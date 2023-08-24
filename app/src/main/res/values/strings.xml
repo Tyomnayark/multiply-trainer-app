@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Multiply Everywhere</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="greetings">What is your name?</string>
+    <string name="login_error">Please, enter correct name</string>
+</resources>
