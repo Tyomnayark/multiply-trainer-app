@@ -17,6 +17,9 @@ class LOginActivity : AppCompatActivity() {
             val name = textArea.text.toString().trim()
             if (name!= ""){
                 val user = User(name, 0)
+                val db = DataBaseController(this, null)
+                db.addUser(user)
+                Toast.makeText(this,R.string.Greetings, Toast.LENGTH_SHORT)
             }
             else{
                 Toast.makeText(this, R.string.login_error.toString(),Toast.LENGTH_SHORT)

@@ -1,4 +1,4 @@
 package com.example.multiplyeverywhere
 
-class User (name: String, level: Int) {
+class User (val name: String, val level: Int) {
 }
