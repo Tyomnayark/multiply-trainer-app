@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         }
         var userName = SharedPreferencesHelper(this).getUserName()
         var user = db.getUserByName(userName)
-        Toast.makeText(this, "${user!!.name} ${user!!.level} hello!", Toast.LENGTH_SHORT)
+        Toast.makeText(this, "${user!!.name} ${user!!.level} hello!", Toast.LENGTH_SHORT).show()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
