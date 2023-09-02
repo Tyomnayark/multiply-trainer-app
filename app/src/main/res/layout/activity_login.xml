@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="LoginActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,18 +16,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/helloText"
+            android:id="@+id/hello_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
-            android:text="@string/greetings"
+            android:text="@string/nameRequest"
             android:textColor="@color/my_purple"
             android:textSize="20sp"
             android:layout_marginBottom="30dp"/>
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -41,7 +42,7 @@
             />
 
         <Button
-            android:id="@+id/signInButton"
+            android:id="@+id/sign_in_button"
             android:layout_width="170dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
