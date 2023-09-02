@@ -8,5 +8,5 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="nameRequest">What is your name?</string>
     <string name="login_error">Please, enter correct name</string>
-    <string name="Greetings">Hello ${user.name}!</string>
+    <string name="Greetings">Hello </string>
 </resources>
