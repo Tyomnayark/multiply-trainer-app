@@ -11,6 +11,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.multiplyeverywhere.database.DataBaseController
 import com.example.multiplyeverywhere.databinding.ActivityMainBinding
+import com.example.multiplyeverywhere.ui.home.HomeFragment
+import com.example.multiplyeverywhere.ui.home.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -31,6 +33,13 @@ class MainActivity : AppCompatActivity() {
         var userName = SharedPreferencesHelper(this).getUserName()
         var user = db.getUserByName(userName)
         Toast.makeText(this, "${user!!.name} ${user!!.level} hello!", Toast.LENGTH_SHORT).show()
+
+        val userBundle = Bundle()
+        userBundle.putParcelable("user", user)
+
+        val homeFragment = HomeFragment()
+        homeFragment.arguments = userBundle
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
