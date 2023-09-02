@@ -16,7 +16,6 @@ class LoginActivity : AppCompatActivity() {
 
 
         singInButton.setOnClickListener {
-            while (true) {
                 val name = textArea.text.toString().trim()
                 if (name != "") {
                     val user = User(name, 0)
@@ -30,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, R.string.login_error, Toast.LENGTH_SHORT).show()
                 }
-            }
         }
     }
 }
