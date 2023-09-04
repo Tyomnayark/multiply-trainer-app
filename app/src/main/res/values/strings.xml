@@ -9,4 +9,5 @@
     <string name="nameRequest">What is your name?</string>
     <string name="login_error">Please, enter correct name</string>
     <string name="Greetings">Hello </string>
+    <string name="level_text">level:</string>
 </resources>
