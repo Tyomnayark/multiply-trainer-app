@@ -25,17 +25,8 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        val loadingScreen = Intent( this, LoadingActivity::class.java)
-//        startActivity(loadingScreen)
-
-        val db = DataBaseController(this, null)
-        val databaseExists = db.doesDatabaseExist(this, "users")
-
-        if (!databaseExists) {
-        val registration = Intent(this, LoginActivity::class.java)
-            startActivity(registration)
-        }
         setContentView(R.layout.activity_main)
+        supportActionBar?.hide()
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = NavHostFragment.findNavController(supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)!!)
@@ -47,7 +38,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-
         navView.setupWithNavController(navController)
     }
 
