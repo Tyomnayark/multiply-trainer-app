@@ -1,12 +1,31 @@
 <resources>
     <string name="app_name">Multiply Everywhere</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Profile</string>
+    <string name="title_dashboard">Trainer</string>
+    <string name="title_notifications">Settings</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="nameRequest">What is your name?</string>
-    <string name="login_error">Please, enter correct name</string>
+    <string name="login_error_empty">Please, enter correct name</string>
+    <string name="login_error_length">Your name is too long</string>
+    <string name="login_error_user_exist">This user already exist, try another name</string>
     <string name="Greetings">Hello </string>
+    <string name="level_text">level:</string>
+    <string name="day_achievement_progress_text">You have been training for 0 days</string>
+    <string name="excellent_achievement_progress_text">Training without errors</string>
+    <string name="level_achievement_progress_text">Your level is</string>
+    <string name="more_achievements_button">See more</string>
+    <string name="text_system_settings">System settings</string>
+    <string name="text_profile_settings">Profile settings</string>
+    <string name="text_set_language">Change language</string>
+    <string name="button_add_user">Add user</string>
+    <string name="switch_sound">Sounds</string>
+    <string name="button_change_user">Change user</string>
+    <string name="button_delete_user">Delete user</string>
+    <string name="switch_notifications">Notifications</string>
+    <string name="alert_dialog_text_add_new_user_title">Add new user</string>
+    <string name="alert_dialog_text_add_new_user_question">Are you sure you want to create a new user?</string>
+    <string name="yes_button_text">Yes</string>
+    <string name="no_button_text">No</string>
 </resources>

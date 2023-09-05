@@ -1,13 +1,16 @@
-package com.example.multiplyeverywhere.ui.notifications
+package com.example.multiplyeverywhere.ui.trainer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class TrainerViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = ""
     }
     val text: LiveData<String> = _text
+//    fun setNewText(newText: String) {
+//        _text.value = newText
+//    }
 }

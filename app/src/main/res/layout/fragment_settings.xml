@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/custom_green"
+    tools:context=".ui.settings.SettingsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_border_rectangle"
+                android:padding="20dp">
+
+
+                <TextView
+                    android:id="@+id/text_system_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="@string/text_system_settings"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_change_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_set_language"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_system_settings" />
+
+                <Spinner
+                    android:id="@+id/spinner_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    app:layout_constraintTop_toBottomOf="@id/text_change_language" />
+
+                <Switch
+                    android:id="@+id/switch_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left"
+                    android:text="THEME"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/spinner_language" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:background="@drawable/rounded_border_rectangle">
+
+                <TextView
+                    android:id="@+id/text_profile_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="@string/text_profile_settings"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Switch
+                    android:id="@+id/switch_sound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_profile_settings" />
+
+                <Switch
+                    android:id="@+id/switch_notifications"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/switch_sound" />
+
+                <Button
+                    android:id="@+id/button_add_new_user"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/button_add_user"
+                    app:cornerRadius="20dp"
+                    android:backgroundTint="@color/custom_light_green"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/switch_notifications" />
+
+                <Button
+                    android:id="@+id/button_change_user"
+                  android:layout_width="200dp"
+                    app:cornerRadius="20dp"
+                    android:backgroundTint="@color/custom_purple"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_change_user"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/button_add_new_user" />
+                <Button
+                    android:id="@+id/button_delete_user"
+                    android:layout_width="200dp"
+                    app:cornerRadius="20dp"
+                    android:backgroundTint="@color/custom_dark_green"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_delete_user"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/button_change_user" />
+
+                <TextView
+                    android:id="@+id/text_sound_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/switch_sound"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="@id/switch_sound"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_notification_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="@string/switch_notifications"
+                    app:layout_constraintBottom_toBottomOf="@id/switch_notifications"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

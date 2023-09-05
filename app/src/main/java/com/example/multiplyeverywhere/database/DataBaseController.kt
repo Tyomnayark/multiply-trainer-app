@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.example.multiplyeverywhere.User
 
 class DataBaseController (val context: Context , val factory: SQLiteDatabase.CursorFactory?) :
-    SQLiteOpenHelper (context, "users", factory, 1){
+    SQLiteOpenHelper (context, "usersdb", factory, 1){
     override fun onCreate(db: SQLiteDatabase?) {
         val query = "CREATE TABLE users (id INT PRIMARY KEY, name STRING, level INT)"
         db!!.execSQL(query)
