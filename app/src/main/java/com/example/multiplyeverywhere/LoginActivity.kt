@@ -18,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
         singInButton.setOnClickListener {
                 val name = textArea.text.toString().trim()
                 if (name != "") {
-                    val user = User(name, 0)
+                    val user = User(name, 1)
                     val db = DataBaseController(this, null)
                     db.addUser(user)
                     val preferences = SharedPreferencesHelper(this)

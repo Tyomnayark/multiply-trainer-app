@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val loadingScreen = Intent( this, LoadingActivity::class.java)
-        startActivity(loadingScreen)
+//        val loadingScreen = Intent( this, LoadingActivity::class.java)
+//        startActivity(loadingScreen)
 
         val db = DataBaseController(this, null)
         val databaseExists = db.doesDatabaseExist(this, "users")

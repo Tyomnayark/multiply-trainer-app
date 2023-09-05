@@ -10,4 +10,7 @@
     <string name="login_error">Please, enter correct name</string>
     <string name="Greetings">Hello </string>
     <string name="level_text">level:</string>
+    <string name="day_achievement_progress_text">You have been training for 0 days</string>
+    <string name="excellent_achievement_progress_text">Training without errors</string>
+    <string name="level_achievement_progress_text">Your level is</string>
 </resources>
