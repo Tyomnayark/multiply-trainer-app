@@ -1,10 +1,10 @@
-package com.example.multiplyeverywhere.ui.dashboard
+package com.example.multiplyeverywhere.ui.trainer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class TrainerViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = ""

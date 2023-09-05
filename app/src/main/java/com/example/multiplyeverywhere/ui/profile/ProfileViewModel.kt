@@ -1,15 +1,12 @@
-package com.example.multiplyeverywhere.ui.home
+package com.example.multiplyeverywhere.ui.profile
 
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.multiplyeverywhere.R
-import com.example.multiplyeverywhere.SharedPreferencesHelper
-import com.example.multiplyeverywhere.User
 
-class HomeViewModel : ViewModel() {
+class ProfileViewModel : ViewModel() {
 
     private val _userName = MutableLiveData<String>().apply {
         value = "User name"

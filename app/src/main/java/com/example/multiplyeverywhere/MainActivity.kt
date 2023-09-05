@@ -1,22 +1,14 @@
 package com.example.multiplyeverywhere
 
 import android.annotation.SuppressLint
-import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.multiplyeverywhere.database.DataBaseController
-import com.example.multiplyeverywhere.databinding.ActivityMainBinding
-import com.example.multiplyeverywhere.ui.dashboard.DashboardFragment
-import com.example.multiplyeverywhere.ui.home.HomeFragment
-import com.example.multiplyeverywhere.ui.home.HomeViewModel
-import com.example.multiplyeverywhere.ui.notifications.NotificationsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -39,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        navView.itemIconTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))
     }
 
 }

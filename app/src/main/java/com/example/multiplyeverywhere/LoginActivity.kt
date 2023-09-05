@@ -20,19 +20,36 @@ class LoginActivity : AppCompatActivity() {
 
         singInButton.setOnClickListener {
                 val name = textArea.text.toString().trim()
-                if (name != "") {
+            val db = DataBaseController(this, null)
+
+               if( !isValidName(name,db)){
+                   return@setOnClickListener
+               }
                     val user = User(name, 1)
-                    val db = DataBaseController(this, null)
                     db.addUser(user)
+
                     val preferences = SharedPreferencesHelper(this)
                     preferences.setUserName(name)
 
                     val mainActivity = Intent(this, MainActivity::class.java)
                     startActivity(mainActivity)
                     this.finish()
-                } else {
-                    Toast.makeText(this, R.string.login_error, Toast.LENGTH_SHORT).show()
-                }
         }
+    }
+   private fun isValidName(name: String, db: DataBaseController) : Boolean {
+        if (name == ""){
+            Toast.makeText(this, R.string.login_error_empty, Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (name.length > 20){
+            Toast.makeText(this, R.string.login_error_length, Toast.LENGTH_SHORT).show()
+            return false
+        }
+       if (db.getUserByName(name)!=null){
+           Toast.makeText(this, R.string.login_error_user_exist, Toast.LENGTH_SHORT).show()
+           return false
+       }
+
+        return true
     }
 }
