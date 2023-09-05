@@ -8,5 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#808080</color>
-    <color name="my_purple">#483D8B</color>
+    <color name="custom_purple">#483D8B</color>
+    <color name="custom_dark_green">#2f4f4f</color>
+    <color name="custom_yellow">#eec900</color>
+    <color name="custom_green">	#528b8b</color>
+    <color name="custom_light_green">#7ccd7c</color>
 </resources>
