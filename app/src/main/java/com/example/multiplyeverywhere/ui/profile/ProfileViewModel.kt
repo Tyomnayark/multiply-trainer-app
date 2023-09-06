@@ -18,7 +18,7 @@ class ProfileViewModel : ViewModel() {
     }
     val userLevel: LiveData<String> = _userLevel
     fun setText(userName: String, levelString: String , context: Context){
-        var levelText = context.getText(R.string.level_text).toString() + " " + levelString
+        var levelText =  levelString
         _userName.value = userName
         _userLevel.value = levelText
     }

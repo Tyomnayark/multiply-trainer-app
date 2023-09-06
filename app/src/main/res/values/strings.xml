@@ -11,13 +11,13 @@
     <string name="login_error_length">Your name is too long</string>
     <string name="login_error_user_exist">This user already exist, try another name</string>
     <string name="Greetings">Hello </string>
-    <string name="level_text">level:</string>
+    <string name="level_text"></string>
     <string name="day_achievement_progress_text">You have been training for 0 days</string>
     <string name="excellent_achievement_progress_text">Training without errors</string>
     <string name="level_achievement_progress_text">Your level is</string>
     <string name="more_achievements_button">See more</string>
-    <string name="text_system_settings">System settings</string>
-    <string name="text_profile_settings">Profile settings</string>
+    <string name="text_system_settings">System</string>
+    <string name="text_profile_settings">Profile</string>
     <string name="text_set_language">Change language</string>
     <string name="button_add_user">Add user</string>
     <string name="switch_sound">Sounds</string>
@@ -28,4 +28,8 @@
     <string name="alert_dialog_text_add_new_user_question">Are you sure you want to create a new user?</string>
     <string name="yes_button_text">Yes</string>
     <string name="no_button_text">No</string>
+    <string name="settings_title">Settings</string>
+    <string name="version_title">Version</string>
+    <string name="app_version_text">multiply-everythere 1.0</string>
+    <string name="button_about_us_text">About us</string>
 </resources>

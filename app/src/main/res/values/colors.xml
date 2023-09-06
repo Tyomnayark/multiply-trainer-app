@@ -13,4 +13,5 @@
     <color name="custom_yellow">#f7ca4b</color>
     <color name="custom_green">	#528b8b</color>
     <color name="custom_light_green">#7ccd7c</color>
+    <color name="custom_light_grey">#CFCFCF</color>
 </resources>

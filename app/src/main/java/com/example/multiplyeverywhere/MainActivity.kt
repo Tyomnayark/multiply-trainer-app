@@ -33,5 +33,4 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         navView.itemIconTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))
     }
-
 }
