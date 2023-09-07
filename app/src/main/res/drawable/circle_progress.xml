@@ -13,7 +13,7 @@
             android:shape="ring"
             android:thicknessRatio="16"
             android:useLevel="true">
-            <solid android:color="@color/custom_purple"></solid>
+            <solid android:color="@color/custom_light_green"></solid>
         </shape>
     </item>
 </layer-list>

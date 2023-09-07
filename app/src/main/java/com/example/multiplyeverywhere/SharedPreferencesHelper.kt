@@ -25,4 +25,5 @@ class SharedPreferencesHelper(private val context: Context) {
     fun setTheme(theme: String) {
         sharedPreferences.edit().putString("theme", theme).apply()
     }
+
 }

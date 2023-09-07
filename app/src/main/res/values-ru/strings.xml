@@ -38,4 +38,7 @@
     <string name="question_delete_user">Вы уверены что хотите удалить текущего пользователя?</string>
     <string name="title_delete_user">Удаление пользователя</string>
     <string name="achievements_title">Достижения</string>
+    <string name="language_item_russian">Русский</string>
+    <string name="language_item_english">Английский</string>
+    <string name="language_item_kazakh">Казахский</string>
 </resources>

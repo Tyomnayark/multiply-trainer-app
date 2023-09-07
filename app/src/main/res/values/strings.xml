@@ -37,4 +37,7 @@
     <string name="question_delete_user">Are you sure you want to delete a current user?</string>
     <string name="title_delete_user">Delete user</string>
     <string name="achievements_title">Achievements</string>
+    <string name="language_item_russian">Russian</string>
+    <string name="language_item_english">English</string>
+    <string name="language_item_kazakh">Kazakh</string>
 </resources>
