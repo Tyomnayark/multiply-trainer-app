@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_bold"
                 android:textSize="30sp"
-                android:textColor="@color/white"
+                android:textColor="@color/text_color"
                 android:layout_marginBottom="10dp"
                 android:text="@string/settings_title" />
 
@@ -125,6 +125,7 @@
                     android:layout_marginTop="40dp"
                     android:text="@string/button_add_user"
                     app:cornerRadius="20dp"
+                    android:textColor="@color/text_color"
                     android:backgroundTint="@color/custom_light_green"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -137,6 +138,7 @@
                     android:backgroundTint="@color/custom_dark_green"
                     android:text="@string/button_delete_user"
                     app:cornerRadius="20dp"
+                    android:textColor="@color/text_color"
                     app:layout_constraintTop_toBottomOf="@id/button_add_new_user"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.502"
@@ -219,6 +221,7 @@
                     android:backgroundTint="@color/custom_purple"
                     android:layout_marginBottom="20dp"
                     android:text="@string/button_about_us_text"
+                    android:textColor="@color/text_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/version_settings_text" />

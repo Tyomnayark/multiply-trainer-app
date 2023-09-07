@@ -7,6 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="text_color">#FFFFFFFF</color>
+    <color name="text_color_dark">#2f4f4f</color>
     <color name="grey">#808080</color>
     <color name="custom_purple">#483D8B</color>
     <color name="custom_dark_green">#2f4f4f</color>

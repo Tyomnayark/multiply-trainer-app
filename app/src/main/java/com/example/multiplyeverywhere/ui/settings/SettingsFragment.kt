@@ -187,7 +187,13 @@ class SettingsFragment : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         }
+
+        // create theme sets
+
         val switchTheme = view.findViewById<Switch>(R.id.switch_theme)
+        val isNightThemeEnabled = preferences.getTheme() == "night"
+        switchTheme.isChecked = isNightThemeEnabled
+
         switchTheme.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
