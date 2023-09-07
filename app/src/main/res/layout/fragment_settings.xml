@@ -109,7 +109,7 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_profile_settings" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_change_profile" />
 
                 <Switch
                     android:id="@+id/switch_notifications"
@@ -160,6 +160,25 @@
                     android:text="@string/switch_notifications"
                     app:layout_constraintBottom_toBottomOf="@id/switch_notifications"
                     app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/change_profile_text"
+                    android:text="@string/change_profile_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_profile_settings" />
+
+                <Spinner
+                    android:id="@+id/spinner_change_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/change_profile_text" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
