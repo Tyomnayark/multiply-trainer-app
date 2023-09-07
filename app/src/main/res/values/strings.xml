@@ -36,4 +36,5 @@
     <string name="change_profile_text">Change profile</string>
     <string name="question_delete_user">Are you sure you want to delete a current user?</string>
     <string name="title_delete_user">Delete user</string>
+    <string name="achievements_title">Achievements</string>
 </resources>
