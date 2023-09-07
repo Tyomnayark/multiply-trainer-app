@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Switch
 import androidx.appcompat.app.AppCompatDelegate
@@ -189,18 +190,26 @@ class SettingsFragment : Fragment() {
         }
 
         // create theme sets
+        val themeImage = view.findViewById<ImageView>(R.id.theme_picture)
 
         val switchTheme = view.findViewById<Switch>(R.id.switch_theme)
         val isNightThemeEnabled = preferences.getTheme() == "night"
         switchTheme.isChecked = isNightThemeEnabled
+        if (isNightThemeEnabled) {
+            themeImage.setImageResource(R.drawable.moon)
+        } else {
+            themeImage.setImageResource(R.drawable.sun)
+        }
 
         switchTheme.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 preferences.setTheme("night")
+                themeImage.setImageResource(R.drawable.moon)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 preferences.setTheme("day")
+                themeImage.setImageResource(R.drawable.sun)
             }
         }
     }

@@ -48,7 +48,7 @@ class LoadingActivity : AppCompatActivity() {
 
             this@LoadingActivity.resources.updateConfiguration(configuration,this@LoadingActivity.resources.displayMetrics)
 
-            val intent = if (!databaseExists) {
+            val intent = if ((!databaseExists) || preferencesHelper.getUserName()== "" ) {
                 Intent(this@LoadingActivity, LoginActivity::class.java)
             } else {
                 Intent(this@LoadingActivity, MainActivity::class.java)
