@@ -13,4 +13,23 @@ class SharedPreferencesHelper(private val context: Context) {
     fun getUserName(): String {
         return sharedPreferences.getString("user_name", "") ?: ""
     }
+    fun getLanguage(): String {
+        return sharedPreferences.getString("language", "") ?: ""
+    }
+    fun setLanguage(language: String) {
+        sharedPreferences.edit().putString("language", language).apply()
+    }
+    fun getTheme(): String {
+        return sharedPreferences.getString("theme", "") ?: ""
+    }
+    fun setTheme(theme: String) {
+        sharedPreferences.edit().putString("theme", theme).apply()
+    }
+    fun getSoundSetttings(): String {
+        return sharedPreferences.getString("sound", "") ?: ""
+    }
+    fun setSoundSetttings(sound: String) {
+        sharedPreferences.edit().putString("sound", sound).apply()
+    }
+
 }

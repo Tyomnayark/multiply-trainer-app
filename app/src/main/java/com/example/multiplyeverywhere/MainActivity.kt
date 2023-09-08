@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         supportActionBar?.hide()
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
@@ -29,9 +30,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_notifications
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        navView.itemIconTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))
+        navView.itemIconTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.text_color))
     }
-
 }

@@ -1,5 +1,6 @@
 package com.example.multiplyeverywhere.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +45,11 @@ class ProfileFragment : Fragment() {
         }
         profileViewModel.userLevel.observe(viewLifecycleOwner) {
             textViewUserLevel.text = it
+        }
+        binding.editProfilePhotoButton.setOnClickListener {
+            val fragmentManager = childFragmentManager
+            val dialog = DialogEditProfilePhoto()
+            dialog.show(fragmentManager, "EditProfilePhotoDialog")
         }
         return root
     }

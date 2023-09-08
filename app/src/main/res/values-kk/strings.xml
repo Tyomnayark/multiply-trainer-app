@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Әржерде көбейтіңіз</string>
+    <string name="title_home">Профиль</string>
+    <string name="title_dashboard">Жаттықтырушы</string>
+    <string name="title_notifications">Баптау</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="action_sign_in_short">Кіру</string>
+    <string name="invalid_username">Қате пайдаланушы аты</string>
+    <string name="nameRequest">Сіздің атыңыз кім?</string>
+    <string name="login_error_empty">Дұрыс атауды енгізіңіз</string>
+    <string name="login_error_length">Сіздің атыңыз өте ұзақ</string>
+    <string name="login_error_user_exist">Бұл пайдаланушы бар, басқа аты қолданып көріңіз</string>
+    <string name="Greetings">Cәлем </string>
+    <string name="level_text"></string>
+    <string name="day_achievement_progress_text">Сіз 0 күн жаттығу жасадыңыз</string>
+    <string name="excellent_achievement_progress_text">Қатесіз жаттығу</string>
+    <string name="level_achievement_progress_text">Сіздің деңгейіңіз</string>
+    <string name="more_achievements_button">Барлығын қарау</string>
+    <string name="text_system_settings">Система</string>
+    <string name="text_profile_settings">Профиль</string>
+    <string name="text_set_language">Тілді өзгерту</string>
+    <string name="button_add_user">Профильды жасау</string>
+    <string name="switch_sound">Дыбыстар</string>
+    <string name="button_change_user">Профильды өзгерту</string>
+    <string name="button_delete_user">Профильды жою</string>
+    <string name="switch_notifications">Хабарламалар</string>
+    <string name="alert_dialog_text_add_new_user_title">Жаңа профильды жасау</string>
+    <string name="alert_dialog_text_add_new_user_question">Жаңа профильды жасағыңыз келетініне сенімдісіз бе?</string>
+    <string name="yes_button_text">Иә</string>
+    <string name="no_button_text">Жоқ</string>
+    <string name="settings_title">Баптау</string>
+    <string name="version_title">Версия</string>
+    <string name="app_version_text">Әржерде-көбейтіңіз 1.0</string>
+    <string name="button_about_us_text">Біз туралы</string>
+    <string name="statistics_title_text">Статистика</string>
+    <string name="change_profile_text">Профильды өзгерту</string>
+    <string name="question_delete_user">Профильды жою келтініну сенімдсіз бе?</string>
+    <string name="title_delete_user">Профильды жою</string>
+    <string name="achievements_title">Жетістіктер</string>
+    <string name="language_item_russian">Орыс</string>
+    <string name="language_item_english">Ағылшын</string>
+    <string name="language_item_kazakh">Қазақ</string>
+    <string name="edit_photo_title">Профиль суретін өзгерту</string>
+</resources>
