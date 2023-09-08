@@ -48,8 +48,7 @@ class ProfileFragment : Fragment() {
             textViewUserLevel.text = it
         }
 
-        val resourceId = resources.getIdentifier(user?.profileImage, context.packageName )
-        // TODO: refactor this ^ 
+        val resourceId = resources.getIdentifier(user?.profileImage, "drawable", context?.packageName)
         binding.profileImage.setImageResource(resourceId)
 
         binding.editProfilePhotoButton.setOnClickListener {
@@ -59,6 +58,8 @@ class ProfileFragment : Fragment() {
         }
         return root
     }
+
+    // TODO: fix resources 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

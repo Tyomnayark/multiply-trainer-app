@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
                if( !isValidName(name,db)){
                    return@setOnClickListener
                }
-                    val user = User(name, 1)
+                    val user = User(name, 1, "drawable/cat.png" )
                     db.addUser(user)
 
                     val preferences = SharedPreferencesHelper(this)
@@ -36,6 +36,8 @@ class LoginActivity : AppCompatActivity() {
                     this.finish()
         }
     }
+
+    // TODO: fix resources
    private fun isValidName(name: String, db: DataBaseController) : Boolean {
         if (name == ""){
             Toast.makeText(this, R.string.login_error_empty, Toast.LENGTH_SHORT).show()
