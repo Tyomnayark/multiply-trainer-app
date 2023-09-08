@@ -49,6 +49,7 @@ class ProfileFragment : Fragment() {
         }
 
         val resourceId = resources.getIdentifier(user?.profileImage, context.packageName )
+        // TODO: refactor this ^ 
         binding.profileImage.setImageResource(resourceId)
 
         binding.editProfilePhotoButton.setOnClickListener {
