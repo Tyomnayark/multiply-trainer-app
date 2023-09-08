@@ -1,8 +1,10 @@
 package com.example.multiplyeverywhere.ui.settings
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.media.AudioManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +15,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Switch
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.example.multiplyeverywhere.LoginActivity
 import com.example.multiplyeverywhere.R
@@ -212,6 +216,29 @@ class SettingsFragment : Fragment() {
                 themeImage.setImageResource(R.drawable.sun)
             }
         }
+
+        // create sound switch
+
+        val switchSound = view.findViewById<Switch>(R.id.switch_sound)
+        val audioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
+        val isChecked = preferences.getSoundSetttings() == "true" ||  preferences.getSoundSetttings() == ""
+
+        switchSound.isChecked = isChecked
+
+        switchSound.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true)
+                preferences.setSoundSetttings("true")
+                Toast.makeText(requireContext(), "Sound enabled", Toast.LENGTH_SHORT).show()
+            } else {
+                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false)
+                preferences.setSoundSetttings("false")
+                Toast.makeText(requireContext(), "Sound disabled", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
     }
 
     override fun onDestroyView() {

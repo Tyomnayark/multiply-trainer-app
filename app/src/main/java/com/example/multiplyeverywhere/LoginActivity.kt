@@ -17,10 +17,10 @@ class LoginActivity : AppCompatActivity() {
         val textArea = findViewById<EditText>(R.id.user_name)
         val singInButton = findViewById<Button>(R.id.sign_in_button)
 
+        val db = DataBaseController(this, null)
 
         singInButton.setOnClickListener {
                 val name = textArea.text.toString().trim()
-            val db = DataBaseController(this, null)
 
                if( !isValidName(name,db)){
                    return@setOnClickListener

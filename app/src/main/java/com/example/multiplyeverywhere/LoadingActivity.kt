@@ -1,11 +1,15 @@
 package com.example.multiplyeverywhere
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.media.AudioManager
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.multiplyeverywhere.database.DataBaseController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -33,8 +37,17 @@ class LoadingActivity : AppCompatActivity() {
         val language = preferencesHelper.getLanguage()
         val locale  = Locale(language)
         Locale.setDefault(locale)
-        val configuration = Configuration();
-        configuration.setLocale(locale);
+        val configuration = Configuration()
+        configuration.setLocale(locale)
+
+        val isSoundEnable = preferencesHelper.getSoundSetttings()=="true" || preferencesHelper.getSoundSetttings()==""
+        val audioManager = this.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
+        if (isSoundEnable) {
+            audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true)
+        } else {
+            audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false)
+        }
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)

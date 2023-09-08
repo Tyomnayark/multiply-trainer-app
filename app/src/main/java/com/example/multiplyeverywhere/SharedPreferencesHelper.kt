@@ -25,5 +25,11 @@ class SharedPreferencesHelper(private val context: Context) {
     fun setTheme(theme: String) {
         sharedPreferences.edit().putString("theme", theme).apply()
     }
+    fun getSoundSetttings(): String {
+        return sharedPreferences.getString("sound", "") ?: ""
+    }
+    fun setSoundSetttings(sound: String) {
+        sharedPreferences.edit().putString("sound", sound).apply()
+    }
 
 }
