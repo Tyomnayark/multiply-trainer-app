@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.multiplyeverywhere.R
 
 class ProfileViewModel : ViewModel() {
 
@@ -22,4 +21,5 @@ class ProfileViewModel : ViewModel() {
         _userName.value = userName
         _userLevel.value = levelText
     }
+
 }

@@ -41,4 +41,5 @@
     <string name="language_item_russian">Орыс</string>
     <string name="language_item_english">Ағылшын</string>
     <string name="language_item_kazakh">Қазақ</string>
+    <string name="edit_photo_title">Профиль суретін өзгерту</string>
 </resources>

@@ -41,4 +41,5 @@
     <string name="language_item_russian">Русский</string>
     <string name="language_item_english">Английский</string>
     <string name="language_item_kazakh">Казахский</string>
+    <string name="edit_photo_title">Редактировать профиль</string>
 </resources>

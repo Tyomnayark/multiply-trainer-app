@@ -237,8 +237,6 @@ class SettingsFragment : Fragment() {
                 Toast.makeText(requireContext(), "Sound disabled", Toast.LENGTH_SHORT).show()
             }
         }
-
-
     }
 
     override fun onDestroyView() {
