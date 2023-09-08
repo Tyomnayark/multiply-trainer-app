@@ -70,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@id/text_home" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton3"
+            android:id="@+id/edit_profile_photo_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/custom_purple"

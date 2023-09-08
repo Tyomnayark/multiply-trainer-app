@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_notifications
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         navView.itemIconTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.text_color))

@@ -44,10 +44,12 @@ class LoadingActivity : AppCompatActivity() {
         val audioManager = this.getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
         if (isSoundEnable) {
-            audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true)
-        } else {
             audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false)
+        } else {
+            audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true)
         }
+
+
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)

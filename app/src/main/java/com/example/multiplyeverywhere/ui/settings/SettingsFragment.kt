@@ -228,11 +228,11 @@ class SettingsFragment : Fragment() {
 
         switchSound.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true)
+                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false)
                 preferences.setSoundSetttings("true")
                 Toast.makeText(requireContext(), "Sound enabled", Toast.LENGTH_SHORT).show()
             } else {
-                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false)
+                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true)
                 preferences.setSoundSetttings("false")
                 Toast.makeText(requireContext(), "Sound disabled", Toast.LENGTH_SHORT).show()
             }
