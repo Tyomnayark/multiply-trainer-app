@@ -11,7 +11,7 @@ import com.example.multiplyeverywhere.User
 class DataBaseController (val context: Context , val factory: SQLiteDatabase.CursorFactory?) :
     SQLiteOpenHelper (context, "usersdb", factory, 1){
     override fun onCreate(db: SQLiteDatabase?) {
-        val query = "CREATE TABLE users (id INT PRIMARY KEY, name STRING, level INT)"
+        val query = "CREATE TABLE users (id INT PRIMARY KEY, name STRING, level INT, image STRING)"
         db!!.execSQL(query)
     }
 
@@ -23,6 +23,7 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
         val values  = ContentValues()
         values.put("name", user.name)
         values.put("level", user.level)
+        values.put("image", user.profileImage)
         val db = this.writableDatabase
         db.insert("users", null, values)
     }
@@ -48,12 +49,14 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
             if (cursor.moveToFirst()) {
                 val name = cursor.getString(cursor.getColumnIndex("name"))
                 val level = cursor.getInt(cursor.getColumnIndex("level"))
-                user = User( name, level)
+                val image = cursor.getString(cursor.getColumnIndex("image"))
+                user = User( name, level, image)
             }
             cursor.close()
         }
         return user
     }
+    @SuppressLint("Range")
     fun getUserNames(): ArrayList<String> {
         val userNames = ArrayList<String>()
         val db = this.readableDatabase
@@ -74,6 +77,7 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
 
         return userNames
     }
+
     fun deleteUserByName(userName: String): Boolean {
         val db = this.writableDatabase
 
@@ -84,4 +88,5 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
 
         return deletedRows > 0
     }
+
 }

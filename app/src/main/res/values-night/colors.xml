@@ -17,4 +17,5 @@
     <color name="custom_light_green">#434b77</color>
     <color name="custom_light_grey">#CFCFCF</color>
     <color name="spinners">#434b77</color>
+    <color name="no_color">#00000000</color>
 </resources>

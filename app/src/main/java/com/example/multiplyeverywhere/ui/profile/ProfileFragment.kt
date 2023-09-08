@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.multiplyeverywhere.R
 import com.example.multiplyeverywhere.SharedPreferencesHelper
 import com.example.multiplyeverywhere.User
 import com.example.multiplyeverywhere.database.DataBaseController
@@ -46,6 +47,10 @@ class ProfileFragment : Fragment() {
         profileViewModel.userLevel.observe(viewLifecycleOwner) {
             textViewUserLevel.text = it
         }
+
+        val resourceId = resources.getIdentifier(user?.profileImage, context.packageName )
+        binding.profileImage.setImageResource(resourceId)
+
         binding.editProfilePhotoButton.setOnClickListener {
             val fragmentManager = childFragmentManager
             val dialog = DialogEditProfilePhoto()

@@ -125,7 +125,9 @@ class SettingsFragment : Fragment() {
             builder.setNegativeButton(getString(R.string.no_button_text)) { dialog, which ->
                 dialog.dismiss()
             }
+
             val dialog = builder.create()
+            dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_border_rectangle)
             dialog.show()
         }
 
