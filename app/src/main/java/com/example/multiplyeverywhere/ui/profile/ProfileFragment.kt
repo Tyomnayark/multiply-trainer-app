@@ -51,11 +51,11 @@ class ProfileFragment : Fragment() {
 //        val resourceId = resources.getIdentifier(user?.profileImage, "drawable", context?.packageName)
 //        binding.profileImage.setImageResource(resourceId)
 //
-//        binding.editProfilePhotoButton.setOnClickListener {
-//            val fragmentManager = childFragmentManager
-//            val dialog = DialogEditProfilePhoto()
-//            dialog.show(fragmentManager, "EditProfilePhotoDialog")
-//        }
+        binding.editProfilePhotoButton.setOnClickListener {
+            val fragmentManager = childFragmentManager
+            val dialog = DialogEditProfilePhoto()
+            dialog.show(fragmentManager, "EditProfilePhotoDialog")
+        }
         return root
     }
 

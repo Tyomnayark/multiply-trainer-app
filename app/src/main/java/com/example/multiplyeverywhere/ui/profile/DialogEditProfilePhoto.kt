@@ -31,32 +31,32 @@ class DialogEditProfilePhoto : DialogFragment() {
         val dialog = super.onCreateDialog(savedInstanceState)
 
         dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_border_rectangle)
+//
+//        val image1 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image1)
+//        val image2 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image2)
+//        val image3 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image3)
+//        val image4 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image4)
+//        val image5 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image5)
+//        val image6 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image6)
 
-        val image1 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image1)
-        val image2 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image2)
-        val image3 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image3)
-        val image4 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image4)
-        val image5 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image5)
-        val image6 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image6)
-
-        image1?.setOnClickListener {
-            changeImage(image1)
-        }
-        image2?.setOnClickListener {
-            changeImage(image2)
-        }
-        image3?.setOnClickListener {
-            changeImage(image3)
-        }
-        image4?.setOnClickListener {
-            changeImage(image4)
-        }
-        image5?.setOnClickListener {
-            changeImage(image5)
-        }
-        image6?.setOnClickListener {
-            changeImage(image6)
-        }
+//        image1?.setOnClickListener {
+//            changeImage(image1)
+//        }
+//        image2?.setOnClickListener {
+//            changeImage(image2)
+//        }
+//        image3?.setOnClickListener {
+//            changeImage(image3)
+//        }
+//        image4?.setOnClickListener {
+//            changeImage(image4)
+//        }
+//        image5?.setOnClickListener {
+//            changeImage(image5)
+//        }
+//        image6?.setOnClickListener {
+//            changeImage(image6)
+//        }
 
 
         return dialog
