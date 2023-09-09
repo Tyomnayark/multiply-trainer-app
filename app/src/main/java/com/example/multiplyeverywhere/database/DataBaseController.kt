@@ -32,14 +32,15 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
         return dbFile.exists()
     }
 
+
     @SuppressLint("Range")
     fun getUserByName(userName: String): User? {
         val db = this.readableDatabase
         val cursor = db.query(
             "users",
-            arrayOf("id", "name", "level"),
+            arrayOf("id", "name", "level", "image"),
             "name = ?",
-            arrayOf(userName.toString()),
+            arrayOf(userName),
             null, null, null, null
         )
 
@@ -50,12 +51,14 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
                 val name = cursor.getString(cursor.getColumnIndex("name"))
                 val level = cursor.getInt(cursor.getColumnIndex("level"))
                 val image = cursor.getString(cursor.getColumnIndex("image"))
-                user = User( name, level, image)
+                user = User(name, level, image)
             }
             cursor.close()
         }
+
         return user
     }
+
     @SuppressLint("Range")
     fun getUserNames(): ArrayList<String> {
         val userNames = ArrayList<String>()

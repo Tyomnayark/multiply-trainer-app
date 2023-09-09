@@ -48,14 +48,14 @@ class ProfileFragment : Fragment() {
             textViewUserLevel.text = it
         }
 
-        val resourceId = resources.getIdentifier(user?.profileImage, "drawable", context?.packageName)
-        binding.profileImage.setImageResource(resourceId)
-
-        binding.editProfilePhotoButton.setOnClickListener {
-            val fragmentManager = childFragmentManager
-            val dialog = DialogEditProfilePhoto()
-            dialog.show(fragmentManager, "EditProfilePhotoDialog")
-        }
+//        val resourceId = resources.getIdentifier(user?.profileImage, "drawable", context?.packageName)
+//        binding.profileImage.setImageResource(resourceId)
+//
+//        binding.editProfilePhotoButton.setOnClickListener {
+//            val fragmentManager = childFragmentManager
+//            val dialog = DialogEditProfilePhoto()
+//            dialog.show(fragmentManager, "EditProfilePhotoDialog")
+//        }
         return root
     }
 
