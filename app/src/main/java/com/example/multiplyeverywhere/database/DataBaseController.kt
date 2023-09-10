@@ -52,8 +52,36 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
             }
             cursor.close()
         }
-
         return user
     }
+    fun getUserNames(): ArrayList<String> {
+        val userNames = ArrayList<String>()
+        val db = this.readableDatabase
+        val cursor = db.query(
+            "users",
+            arrayOf("name"),
+            null,
+            null,
+            null, null, null
+        )
 
+        cursor?.use {
+            while (it.moveToNext()) {
+                val name = it.getString(it.getColumnIndex("name"))
+                userNames.add(name)
+            }
+        }
+
+        return userNames
+    }
+    fun deleteUserByName(userName: String): Boolean {
+        val db = this.writableDatabase
+
+        val whereClause = "name = ?"
+        val whereArgs = arrayOf(userName)
+
+        val deletedRows = db.delete("users", whereClause, whereArgs)
+
+        return deletedRows > 0
+    }
 }

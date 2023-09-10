@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_light"
             android:textAlignment="center"
-            android:textColor="@color/custom_dark_green"
+            android:textColor="@color/text_color_dark"
             android:textSize="40sp"
             android:text="User name"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,9 +58,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_light"
-            android:text="User level"
+            android:text="0"
             android:textAlignment="center"
-            android:textColor="@color/custom_dark_green"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/text_color_dark"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@id/constraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,34 +70,79 @@
             app:layout_constraintTop_toBottomOf="@id/text_home" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton3"
+            android:id="@+id/edit_profile_photo_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/custom_purple"
             android:clickable="true"
-            android:src="@drawable/plus"
+            android:src="@drawable/pensil"
             app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:tint="@color/white"
+            app:tint="@color/text_color"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:progressDrawable="@drawable/circle_progress"
+            android:indeterminateOnly="false"
+            android:progress="80"
+            android:rotation="-90"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_home" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/achievements_text"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="Achievements"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/constraintLayout" />
 
-    <LinearLayout
+            <TextView
+                android:id="@+id/Statistics"
+                android:layout_width="match_parent"
+                android:textSize="30sp"
+                android:textColor="@color/text_color"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/statistics_title_text" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:background="@drawable/rounded_border_rectangle"
+                android:layout_height="150dp"
+                >
+
+                <TextView
+                    android:id="@+id/statistic_graph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="Graph"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/achievements_text"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="30sp"
+                android:fontFamily="@font/roboto_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/achievements_title"
+                android:textColor="@color/text_color"
+                app:layout_constraintTop_toBottomOf="@id/constraintLayout" />
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -155,13 +201,13 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/day_achievement_progress_text"
-                        android:textColor="@color/custom_dark_green"
+                        android:textColor="@color/text_color_dark"
                         android:textSize="15sp" />
 
                     <RatingBar
                         android:id="@+id/ratingBarDay"
                         android:layout_width="180dp"
-                        android:progressTint="@color/custom_purple"
+                        android:progressTint="@color/custom_yellow"
                         android:clickable="false"
                         android:rating="4"
                         android:layout_gravity="center"
@@ -214,7 +260,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/excellent_achievement_progress_text"
-                        android:textColor="@color/custom_dark_green"
+                        android:textColor="@color/text_color_dark"
                         android:textSize="15sp" />
 
                     <RatingBar
@@ -226,7 +272,7 @@
                         android:rating="1"
                         android:layout_gravity="center"
                         style="?android:attr/ratingBarStyleIndicator"
-                        android:progressTint="@color/custom_purple" />
+                        android:progressTint="@color/custom_yellow" />
                 </LinearLayout>
 
 
@@ -275,7 +321,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/level_achievement_progress_text"
-                        android:textColor="@color/custom_dark_green"
+                        android:textColor="@color/text_color_dark"
                         android:textSize="15sp" />
 
                     <RatingBar
@@ -287,7 +333,7 @@
                         android:rating="1"
                         android:layout_gravity="center"
                         style="?android:attr/ratingBarStyleIndicator"
-                        android:progressTint="@color/custom_purple" />
+                        android:progressTint="@color/custom_yellow" />
                 </LinearLayout>
 
 
