@@ -13,7 +13,7 @@ import com.example.multiplyeverywhere.database.DataBaseController
 import com.example.multiplyeverywhere.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
-   private var user: User? = null
+    private var user: User? = null
 
     private var _binding: FragmentProfileBinding? = null
 
@@ -47,6 +47,7 @@ class ProfileFragment : Fragment() {
         }
         return root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

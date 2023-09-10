@@ -1,5 +1,6 @@
 package com.example.multiplyeverywhere
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.widget.Toast
 import com.example.multiplyeverywhere.database.*
 
 class LoginActivity : AppCompatActivity() {
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -19,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         singInButton.setOnClickListener {
-                val name = textArea.text.toString().trim()
+            val name = textArea.text.toString().trim()
             val db = DataBaseController(this, null)
 
                if( !isValidName(name,db)){
@@ -32,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
                     preferences.setUserName(name)
 
                     val mainActivity = Intent(this, MainActivity::class.java)
+                    mainActivity.putExtra(Constants.USER_NAME, name)
                     startActivity(mainActivity)
                     this.finish()
         }

@@ -1,5 +1,6 @@
 package com.example.multiplyeverywhere.ui.settings
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -27,14 +28,15 @@ class SettingsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,13 +46,13 @@ class SettingsFragment : Fragment() {
         user = db.getUserByName(userName)
 
         val addUserButton = view.findViewById<Button>(R.id.button_add_new_user)
-        addUserButton.setOnClickListener{
+        addUserButton.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
             builder.setTitle(getString(R.string.alert_dialog_text_add_new_user_title))
             builder.setMessage(getString(R.string.alert_dialog_text_add_new_user_question))
 
             builder.setPositiveButton(getString(R.string.yes_button_text)) { dialog, which ->
-            val registration = Intent(requireContext(), LoginActivity::class.java)
+                val registration = Intent(requireContext(), LoginActivity::class.java)
                 startActivity(registration)
                 requireActivity().finish()
             }
