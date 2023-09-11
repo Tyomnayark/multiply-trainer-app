@@ -37,7 +37,6 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
-                android:onClick="changeImage"
                 android:src="@drawable/cat" />
 
 
@@ -46,8 +45,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
-                android:onClick="changeImage"
-                android:src="@drawable/day_achievent" />
+                android:src="@drawable/cat2" />
 
         </TableRow>
 
@@ -58,8 +56,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
-                android:onClick="changeImage"
-                android:src="@drawable/day_achievent" />
+                android:src="@drawable/cat3" />
 
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -67,8 +64,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
-                android:onClick="changeImage"
-                android:src="@drawable/day_achievent" />
+                android:src="@drawable/cat4" />
 
 
         </TableRow>
@@ -81,16 +77,14 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
-                android:onClick="changeImage"
-                android:src="@drawable/day_achievent" />
+                android:src="@drawable/cat5" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/image6"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
-                android:onClick="changeImage"
-                android:src="@drawable/day_achievent" />
+                android:src="@drawable/cat6" />
         </TableRow>
     </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

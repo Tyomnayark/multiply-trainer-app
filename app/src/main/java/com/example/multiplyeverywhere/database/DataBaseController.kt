@@ -91,5 +91,29 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
 
         return deletedRows > 0
     }
+    fun updateUserLevel(userName: String, newLevel: Int): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put("level", newLevel)
+
+        val whereClause = "name = ?"
+        val whereArgs = arrayOf(userName)
+
+        val updatedRows = db.update("users", values, whereClause, whereArgs)
+
+        return updatedRows > 0
+    }
+    fun updateUserProfileImage(userName: String, newImage: String): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put("image", newImage)
+
+        val whereClause = "name = ?"
+        val whereArgs = arrayOf(userName)
+
+        val updatedRows = db.update("users", values, whereClause, whereArgs)
+
+        return updatedRows > 0
+    }
 
 }

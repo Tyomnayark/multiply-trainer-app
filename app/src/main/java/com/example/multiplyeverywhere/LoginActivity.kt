@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
                if( !isValidName(name,db)){
                    return@setOnClickListener
                }
-                    val user = User(name, 1, "drawable/cat.png" )
+                    val user = User(name, 1, "cat" )
                     db.addUser(user)
 
                     val preferences = SharedPreferencesHelper(this)

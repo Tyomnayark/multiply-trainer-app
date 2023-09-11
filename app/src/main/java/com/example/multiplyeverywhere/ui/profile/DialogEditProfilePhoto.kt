@@ -31,50 +31,43 @@ class DialogEditProfilePhoto : DialogFragment() {
         val dialog = super.onCreateDialog(savedInstanceState)
 
         dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_border_rectangle)
-//
-//        val image1 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image1)
-//        val image2 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image2)
-//        val image3 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image3)
-//        val image4 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image4)
-//        val image5 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image5)
-//        val image6 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image6)
+        val image1 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image1)
+        val image2 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image2)
+        val image3 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image3)
+        val image4 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image4)
+        val image5 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image5)
+        val image6 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image6)
 
-//        image1?.setOnClickListener {
-//            changeImage(image1)
-//        }
-//        image2?.setOnClickListener {
-//            changeImage(image2)
-//        }
-//        image3?.setOnClickListener {
-//            changeImage(image3)
-//        }
-//        image4?.setOnClickListener {
-//            changeImage(image4)
-//        }
-//        image5?.setOnClickListener {
-//            changeImage(image5)
-//        }
-//        image6?.setOnClickListener {
-//            changeImage(image6)
-//        }
+        val imageClickListener = View.OnClickListener { v ->
+            when (v?.id) {
+                R.id.image1 -> handleImageClick("cat")
+                R.id.image2 -> handleImageClick("cat2")
+                R.id.image3 -> handleImageClick("cat3")
+                R.id.image4 -> handleImageClick("cat4")
+                R.id.image5 -> handleImageClick("cat5")
+                R.id.image6 -> handleImageClick("cat6")
+            }
+        }
 
+        image1?.setOnClickListener(imageClickListener)
+        image2?.setOnClickListener(imageClickListener)
+        image3?.setOnClickListener(imageClickListener)
+        image4?.setOnClickListener(imageClickListener)
+        image5?.setOnClickListener(imageClickListener)
+        image6?.setOnClickListener(imageClickListener)
 
         return dialog
     }
-    private fun changeImage(image: View?) {
-        if (image is de.hdodenhof.circleimageview.CircleImageView && image.drawable is BitmapDrawable) {
-            val resourceName = getResourceNameFromImageView(image)
+    private fun handleImageClick(imageName: String) {
+        val db = DataBaseController(requireContext(), null)
+        val userName = SharedPreferencesHelper(requireContext()).getUserName()
 
-            val db = DataBaseController(requireContext(), null)
-            val preferences = SharedPreferencesHelper(requireContext())
-            val userName = preferences.getUserName()
-            val user = db.getUserByName(userName)
-            user?.profileImage = resourceName!!
+        val updated = db.updateUserProfileImage(userName, imageName)
+
+        if (updated) {
+            dialog?.dismiss()
+        } else {
         }
     }
 
-    private fun getResourceNameFromImageView(imageView: de.hdodenhof.circleimageview.CircleImageView): String? {
-        val resourceId = imageView.id
-        return resources.getResourceName(resourceId)?.toString()
-    }
 }
