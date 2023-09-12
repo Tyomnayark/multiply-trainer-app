@@ -174,7 +174,8 @@ class GameActivity : AppCompatActivity() {
     private fun creditPoints(lives: Int, round: Int){
         val db = DataBaseController(this, null)
         var userName = SharedPreferencesHelper(this).getUserName()
-        val points = (10-round) * 500 + lives * 100
+        val user = db.getUserByName(userName)
+        val points = (10-round) * 200 + lives * 100 + user!!.level
         db.updateUserPoints(userName, points )
     }
 }
