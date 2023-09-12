@@ -10,7 +10,5 @@ class TrainerViewModel : ViewModel() {
         value = ""
     }
     val text: LiveData<String> = _text
-//    fun setNewText(newText: String) {
-//        _text.value = newText
-//    }
+
 }
