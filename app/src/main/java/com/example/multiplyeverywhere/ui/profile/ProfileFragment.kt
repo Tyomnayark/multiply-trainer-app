@@ -14,7 +14,7 @@ import com.example.multiplyeverywhere.User
 import com.example.multiplyeverywhere.database.DataBaseController
 import com.example.multiplyeverywhere.databinding.FragmentProfileBinding
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(){
    private var user: User? = null
 
     private var _binding: FragmentProfileBinding? = null
@@ -59,9 +59,9 @@ class ProfileFragment : Fragment() {
         return root
     }
 
-    // TODO: fix resources 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

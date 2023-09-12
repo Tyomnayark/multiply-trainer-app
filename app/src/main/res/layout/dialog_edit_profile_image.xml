@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".DialogEditProfilePhoto"
     android:background="@drawable/rounded_border_rectangle"
     android:layout_height="match_parent">
 
@@ -26,6 +27,7 @@
         android:padding="20dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_edit_profile_image">
 
@@ -37,6 +39,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
+                android:clickable="true"
                 android:src="@drawable/cat" />
 
 
@@ -45,6 +48,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
+                android:clickable="true"
                 android:src="@drawable/cat2" />
 
         </TableRow>
@@ -56,6 +60,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
+                android:clickable="true"
                 android:src="@drawable/cat3" />
 
 
@@ -64,6 +69,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
+                android:clickable="true"
                 android:src="@drawable/cat4" />
 
 
@@ -77,6 +83,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
+                android:clickable="true"
                 android:src="@drawable/cat5" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -84,6 +91,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
+                android:clickable="true"
                 android:src="@drawable/cat6" />
         </TableRow>
     </TableLayout>

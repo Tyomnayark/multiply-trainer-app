@@ -1,8 +1,6 @@
 package com.example.multiplyeverywhere.ui.profile
 
-import android.app.Dialog
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +11,7 @@ import com.example.multiplyeverywhere.SharedPreferencesHelper
 import com.example.multiplyeverywhere.database.DataBaseController
 import com.example.multiplyeverywhere.databinding.DialogEditProfileImageBinding
 
-class DialogEditProfilePhoto : DialogFragment() {
+class DialogEditProfilePhoto : DialogFragment() , OnProfileImageUpdatedListener {
     private var _binding: DialogEditProfileImageBinding? = null
     private val binding get() = _binding!!
 
@@ -27,16 +25,25 @@ class DialogEditProfilePhoto : DialogFragment() {
         return root
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val dialog = super.onCreateDialog(savedInstanceState)
-
         dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_border_rectangle)
-        val image1 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image1)
-        val image2 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image2)
-        val image3 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image3)
-        val image4 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image4)
-        val image5 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image5)
-        val image6 = view?.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.image6)
+
+
+        val image1 = binding.image1
+        val image2 = binding.image2
+        val image3 = binding.image3
+        val image4 = binding.image4
+        val image5 = binding.image5
+        val image6 = binding.image6
+
+        image1?.bringToFront()
+        image2?.bringToFront()
+        image3?.bringToFront()
+        image4?.bringToFront()
+        image5?.bringToFront()
+        image6?.bringToFront()
+
 
         val imageClickListener = View.OnClickListener { v ->
             when (v?.id) {
@@ -56,17 +63,17 @@ class DialogEditProfilePhoto : DialogFragment() {
         image5?.setOnClickListener(imageClickListener)
         image6?.setOnClickListener(imageClickListener)
 
-        return dialog
     }
     private fun handleImageClick(imageName: String) {
         val db = DataBaseController(requireContext(), null)
         val userName = SharedPreferencesHelper(requireContext()).getUserName()
 
         val updated = db.updateUserProfileImage(userName, imageName)
-
         if (updated) {
             dialog?.dismiss()
+
         } else {
+            // TODO: need to define this case
         }
     }
 
