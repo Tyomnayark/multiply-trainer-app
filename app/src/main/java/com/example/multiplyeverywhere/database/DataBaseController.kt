@@ -91,10 +91,10 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
 
         return deletedRows > 0
     }
-    fun updateUserLevel(userName: String, newLevel: Int): Boolean {
+    fun updateUserPoints(userName: String, newPoints: Int): Boolean {
         val db = this.writableDatabase
         val values = ContentValues()
-        values.put("points", newLevel)
+        values.put("points", newPoints)
 
         val whereClause = "name = ?"
         val whereArgs = arrayOf(userName)

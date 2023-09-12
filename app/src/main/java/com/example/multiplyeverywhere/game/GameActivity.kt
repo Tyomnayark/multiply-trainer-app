@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.multiplyeverywhere.R
+import com.example.multiplyeverywhere.SharedPreferencesHelper
+import com.example.multiplyeverywhere.database.DataBaseController
 import com.example.multiplyeverywhere.ui.trainer.FailActivity
 import com.example.multiplyeverywhere.ui.trainer.WInActivity
 
@@ -170,6 +172,9 @@ class GameActivity : AppCompatActivity() {
         return (num1*num2).toString()
     }
     private fun creditPoints(lives: Int, round: Int){
-
+        val db = DataBaseController(this, null)
+        var userName = SharedPreferencesHelper(this).getUserName()
+        val points = (10-round) * 500 + lives * 100
+        db.updateUserPoints(userName, points )
     }
 }

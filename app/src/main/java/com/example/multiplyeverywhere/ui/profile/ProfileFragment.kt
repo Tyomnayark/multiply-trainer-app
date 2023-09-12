@@ -39,7 +39,7 @@ class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
         val textViewUserName: TextView = binding.textHome
         val textViewUserLevel: TextView = binding.levelText
 
-        profileViewModel.setText(userName, user?.level.toString(), requireContext())
+        profileViewModel.setText(userName, countUserLevel(user?.level) , requireContext())
 
         profileViewModel.userName.observe(viewLifecycleOwner) {
             textViewUserName.text = it
@@ -68,5 +68,32 @@ class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
     override fun onProfileImageUpdated(imageName: String) {
         val resourceId = resources.getIdentifier(imageName, "drawable", context?.packageName)
         binding.profileImage.setImageResource(resourceId)
+    }
+    private fun countUserLevel(points: Int?) : String {
+        if (points!! < 1000){
+            setProgressCircle(points/(1000/100))
+            return "1"
+        } else if (points < 2500 ){
+            setProgressCircle(points/(2500/100))
+            return "2"
+        }else if (points < 4500){
+            setProgressCircle(points/(4500/100))
+            return "3"
+        }else if (points < 8000){
+            setProgressCircle(points/(8000/100))
+            return "4"
+        } else if (points < 16000){
+            setProgressCircle(points/(16000/100))
+            return "5"
+        }else if (points < 32000){
+            setProgressCircle(points/(32000/100))
+            return "6"
+        }
+
+        return ""
+    }
+    private fun setProgressCircle(persent : Int){
+        val progressBarCircle = binding.progressBar
+        progressBarCircle.setProgress(persent)
     }
 }
