@@ -11,7 +11,7 @@ import com.example.multiplyeverywhere.User
 class DataBaseController (val context: Context , val factory: SQLiteDatabase.CursorFactory?) :
     SQLiteOpenHelper (context, "usersdb", factory, 1){
     override fun onCreate(db: SQLiteDatabase?) {
-        val query = "CREATE TABLE users (id INT PRIMARY KEY, name STRING, level INT, image STRING)"
+        val query = "CREATE TABLE users (id INT PRIMARY KEY, name STRING, points INT, image STRING )"
         db!!.execSQL(query)
     }
 
@@ -22,7 +22,7 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
     fun addUser(user: User){
         val values  = ContentValues()
         values.put("name", user.name)
-        values.put("level", user.level)
+        values.put("points", user.level)
         values.put("image", user.profileImage)
         val db = this.writableDatabase
         db.insert("users", null, values)
@@ -38,7 +38,7 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
         val db = this.readableDatabase
         val cursor = db.query(
             "users",
-            arrayOf("id", "name", "level", "image"),
+            arrayOf("id", "name", "points", "image"),
             "name = ?",
             arrayOf(userName),
             null, null, null, null
@@ -49,7 +49,7 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 val name = cursor.getString(cursor.getColumnIndex("name"))
-                val level = cursor.getInt(cursor.getColumnIndex("level"))
+                val level = cursor.getInt(cursor.getColumnIndex("points"))
                 val image = cursor.getString(cursor.getColumnIndex("image"))
                 user = User(name, level, image)
             }
@@ -94,7 +94,7 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
     fun updateUserLevel(userName: String, newLevel: Int): Boolean {
         val db = this.writableDatabase
         val values = ContentValues()
-        values.put("level", newLevel)
+        values.put("points", newLevel)
 
         val whereClause = "name = ?"
         val whereArgs = arrayOf(userName)
