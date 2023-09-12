@@ -14,7 +14,7 @@ import com.example.multiplyeverywhere.User
 import com.example.multiplyeverywhere.database.DataBaseController
 import com.example.multiplyeverywhere.databinding.FragmentProfileBinding
 
-class ProfileFragment : Fragment(){
+class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
    private var user: User? = null
 
     private var _binding: FragmentProfileBinding? = null
@@ -54,6 +54,7 @@ class ProfileFragment : Fragment(){
         binding.editProfilePhotoButton.setOnClickListener {
             val fragmentManager = childFragmentManager
             val dialog = DialogEditProfilePhoto()
+            dialog.setProfileImageUpdatedListener(this)
             dialog.show(fragmentManager, "EditProfilePhotoDialog")
         }
         return root
@@ -64,4 +65,8 @@ class ProfileFragment : Fragment(){
         _binding = null
     }
 
+    override fun onProfileImageUpdated(imageName: String) {
+        val resourceId = resources.getIdentifier(imageName, "drawable", context?.packageName)
+        binding.profileImage.setImageResource(resourceId)
+    }
 }

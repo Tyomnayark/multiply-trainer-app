@@ -1,5 +1,6 @@
 package com.example.multiplyeverywhere.ui.profile
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,10 +12,19 @@ import com.example.multiplyeverywhere.SharedPreferencesHelper
 import com.example.multiplyeverywhere.database.DataBaseController
 import com.example.multiplyeverywhere.databinding.DialogEditProfileImageBinding
 
-class DialogEditProfilePhoto : DialogFragment() , OnProfileImageUpdatedListener {
+class DialogEditProfilePhoto : DialogFragment() {
     private var _binding: DialogEditProfileImageBinding? = null
     private val binding get() = _binding!!
 
+    private var profileImageUpdatedListener: OnProfileImageUpdatedListener? = null
+
+    fun setProfileImageUpdatedListener(listener: OnProfileImageUpdatedListener) {
+        this.profileImageUpdatedListener = listener
+    }
+
+    private fun notifyProfileImageUpdated(imageName: String) {
+        profileImageUpdatedListener?.onProfileImageUpdated(imageName)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,6 +35,7 @@ class DialogEditProfilePhoto : DialogFragment() , OnProfileImageUpdatedListener 
         return root
     }
 
+    @SuppressLint("NewApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val dialog = super.onCreateDialog(savedInstanceState)
         dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_border_rectangle)
@@ -46,13 +57,16 @@ class DialogEditProfilePhoto : DialogFragment() , OnProfileImageUpdatedListener 
 
 
         val imageClickListener = View.OnClickListener { v ->
-            when (v?.id) {
-                R.id.image1 -> handleImageClick("cat")
-                R.id.image2 -> handleImageClick("cat2")
-                R.id.image3 -> handleImageClick("cat3")
-                R.id.image4 -> handleImageClick("cat4")
-                R.id.image5 -> handleImageClick("cat5")
-                R.id.image6 -> handleImageClick("cat6")
+            val id = v?.id
+            if (id != null) {
+                when (id) {
+                    R.id.image1 -> handleImageClick("cat")
+                    R.id.image2 -> handleImageClick("cat2")
+                    R.id.image3 -> handleImageClick("cat3")
+                    R.id.image4 -> handleImageClick("cat4")
+                    R.id.image5 -> handleImageClick("cat5")
+                    R.id.image6 -> handleImageClick("cat6")
+                }
             }
         }
 
@@ -70,6 +84,7 @@ class DialogEditProfilePhoto : DialogFragment() , OnProfileImageUpdatedListener 
 
         val updated = db.updateUserProfileImage(userName, imageName)
         if (updated) {
+            notifyProfileImageUpdated(imageName)
             dialog?.dismiss()
 
         } else {
