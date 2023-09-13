@@ -148,20 +148,19 @@ class WInActivity : AppCompatActivity() {
         return 0
     }
     private fun countProgress(points: Int? ) : Int {
-        var p = 0
         if (points!! < 1000){
-           p=1000
+              return (points/(1000/100))
         } else if (points < 2500 ){
-            p=2500
+            return(points-1000/(1500/100))
         }else if (points < 4500){
-            p=4500
+            return(points-2500/(2000/100))
         }else if (points < 8000){
-            p=8000
+            return(points-4500/(3500/100))
         } else if (points < 16000){
-            p=16000
+            return(points-8000/(8000/100))
         }else if (points < 32000){
-            p=32000
+            return(points-16000/(16000/100))
         }
-        return points/(p/100)
+        return 0
     }
 }

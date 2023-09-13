@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -68,25 +69,34 @@ class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
     override fun onProfileImageUpdated(imageName: String) {
         val resourceId = resources.getIdentifier(imageName, "drawable", context?.packageName)
         binding.profileImage.setImageResource(resourceId)
+
+        val cx =  (binding.profileImage.right -  binding.profileImage.left )/2
+        val cy =  (binding.profileImage.right -  binding.profileImage.left )/2
+
+        val finalRadius =     binding.profileImage.width
+
+        val anim = ViewAnimationUtils.createCircularReveal(    binding.profileImage, cx, cy, 0f, finalRadius.toFloat())
+        anim.duration=1000
+        anim.start()
     }
     private fun countUserLevel(points: Int?) : String {
         if (points!! < 1000){
             setProgressCircle(points/(1000/100))
             return "1"
         } else if (points < 2500 ){
-            setProgressCircle(points/(2500/100))
+            setProgressCircle(points-1000/(1500/100))
             return "2"
         }else if (points < 4500){
-            setProgressCircle(points/(4500/100))
+            setProgressCircle(points-2500/(2000/100))
             return "3"
         }else if (points < 8000){
-            setProgressCircle(points/(8000/100))
+            setProgressCircle(points-4500/(3500/100))
             return "4"
         } else if (points < 16000){
-            setProgressCircle(points/(16000/100))
+            setProgressCircle(points-8000/(8000/100))
             return "5"
         }else if (points < 32000){
-            setProgressCircle(points/(32000/100))
+            setProgressCircle(points-16000/(16000/100))
             return "6"
         }
 
