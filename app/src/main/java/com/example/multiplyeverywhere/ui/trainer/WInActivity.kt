@@ -5,9 +5,11 @@ import android.animation.ObjectAnimator
 import android.animation.TypeEvaluator
 import android.animation.ValueAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -23,14 +25,17 @@ class WInActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val rounds = intent.getIntExtra("rounds", 0)
-        val lives = intent.getIntExtra("lives", 0)
+        var lives = intent.getIntExtra("lives", 0)
 
         val db = DataBaseController(this, null)
         var userName = SharedPreferencesHelper(this).getUserName()
         val user = db.getUserByName(userName)
 
+        lives = 2-lives
 
-        val points = (rounds-2+lives) * 50 + lives * 50 + user!!.level
+        var currentPoints = (rounds-lives) * 50
+
+        val points = currentPoints + user!!.level
 
         val startProgress = countProgress(user!!.level)
         val endProgress = countProgress(points)
@@ -42,7 +47,7 @@ class WInActivity : AppCompatActivity() {
         levelText.setText(startLevel.toString())
 
         val pointsText = findViewById<TextView>(R.id.points_text)
-        val newPointsText = "+ " + (( rounds - 2 + lives) * 100 + lives * 50).toString() + " " + getString(R.string.points_text)
+        val newPointsText = "+ " + (currentPoints.toString() + " " + getString(R.string.points_text))
         pointsText.text = newPointsText
 
         val scalePointsAnimator = ValueAnimator.ofFloat(1f, 1.2f)
@@ -105,22 +110,26 @@ class WInActivity : AppCompatActivity() {
 
             var animator = ObjectAnimator.ofInt(progressBar, "progress", startProgress, 100)
             animator.interpolator = AccelerateDecelerateInterpolator()
-            animator.duration = (100-startProgress)*100L
+            animator.duration = (100-startProgress)*50L
             animator.start()
 
             val progressAnimator = ObjectAnimator.ofInt(progressBar, "progress", 0, endProgress)
             progressAnimator.interpolator = AccelerateDecelerateInterpolator()
-            progressAnimator.duration = endProgress*100L
+            progressAnimator.duration = endProgress*50L
             progressAnimator.start()
 
         }else {
             val animator = ObjectAnimator.ofInt(progressBar, "progress", startProgress, endProgress)
             animator.interpolator = AccelerateDecelerateInterpolator()
-            animator.duration = (endProgress-startProgress)*100L
+            animator.duration = (endProgress-startProgress)*50L
             animator.start()
         }
 
         db.updateUserPoints(userName, points )
+        val continueButton = findViewById<Button>(R.id.continue_button)
+        continueButton.setOnClickListener { 
+            finish()
+        }
     }
     private fun countUserLevel(points: Int? ) : Int {
         if (points!! < 1000){

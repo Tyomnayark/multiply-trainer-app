@@ -32,7 +32,7 @@
     <string name="settings_title">Баптау</string>
     <string name="version_title">Версия</string>
     <string name="app_version_text">Әржерде-көбейтіңіз 1.0</string>
-    <string name="button_about_us_text">Біз туралы</string>
+    <string name="button_about_us_text">Біз мне</string>
     <string name="statistics_title_text">Статистика</string>
     <string name="change_profile_text">Профильды өзгерту</string>
     <string name="question_delete_user">Профильды жою келтініну сенімдсіз бе?</string>
@@ -46,4 +46,7 @@
     <string name="next_question_text">Следующий вопрос</string>
     <string name="win_text">Вы победили!</string>
     <string name="points_text">очков</string>
+    <string name="continue_text">Продолжить</string>
+    <string name="fail_text">Вы проиграли</string>
+    <string name="try_again_text">Попробуйте снова!</string>
 </resources>

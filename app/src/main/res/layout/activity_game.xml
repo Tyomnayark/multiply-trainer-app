@@ -47,6 +47,7 @@
                     android:layout_margin="10dp"
                     android:backgroundTint="@color/text_color_dark"
                     android:text="answer"
+                    android:textSize="30sp"
                     android:textColor="@color/white"
                     app:cornerRadius="20dp" />
 
@@ -57,6 +58,7 @@
                     android:layout_margin="10dp"
                     android:backgroundTint="@color/text_color_dark"
                     android:text="answer"
+                    android:textSize="30sp"
                     android:textColor="@color/white"
                     app:cornerRadius="20dp" />
             </TableRow>
@@ -73,6 +75,7 @@
                     android:backgroundTint="@color/text_color_dark"
                     android:text="answer"
                     android:textColor="@color/white"
+                    android:textSize="30sp"
                     app:cornerRadius="20dp" />
 
                 <Button
@@ -83,6 +86,7 @@
                     android:backgroundTint="@color/text_color_dark"
                     android:text="answer"
                     android:textColor="@color/white"
+                    android:textSize="30sp"
                     app:cornerRadius="20dp" />
             </TableRow>
 

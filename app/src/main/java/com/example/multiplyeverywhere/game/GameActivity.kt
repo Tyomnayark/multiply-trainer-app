@@ -4,13 +4,10 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.multiplyeverywhere.R
-import com.example.multiplyeverywhere.SharedPreferencesHelper
-import com.example.multiplyeverywhere.database.DataBaseController
 import com.example.multiplyeverywhere.ui.trainer.FailActivity
 import com.example.multiplyeverywhere.ui.trainer.WInActivity
 
@@ -22,7 +19,7 @@ class GameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game)
         supportActionBar?.hide()
 
-        var round = 0
+        var round = 1
         var responseReceived = false
         var answer = ""
         var rightAnswer = ""
@@ -38,7 +35,6 @@ class GameActivity : AppCompatActivity() {
         val questionText = findViewById<TextView>(R.id.question_text)
 
        rightAnswer =  createGame(button1,button2,button3,button4,questionText)
-//        progressBar.setBackgroundColor(getResources().getColor(R.color.custom_light_green))
 
         nextButton.setOnClickListener {
             if (responseReceived) {
@@ -46,6 +42,7 @@ class GameActivity : AppCompatActivity() {
                 round++
                 progressBar.setProgress(round*10)
                 responseReceived = false
+                nextButton.setBackgroundColor(getColor(R.color.custom_light_grey))
             }
             if (round == 10){
                     val winActivity = Intent(this, WInActivity::class.java)
@@ -54,6 +51,11 @@ class GameActivity : AppCompatActivity() {
                     startActivity(winActivity)
                     finish()
             }
+            button1.setTextColor(getColor(R.color.white))
+            button2.setTextColor(getColor(R.color.white))
+            button3.setTextColor(getColor(R.color.white))
+            button4.setTextColor(getColor(R.color.white))
+            nextButton.setTextColor(getColor(R.color.text_color))
         }
 
         button1.setOnClickListener {
@@ -62,19 +64,22 @@ class GameActivity : AppCompatActivity() {
                 answer = button1.text.toString()
                 if (answer.equals(rightAnswer)){
                     button1.setBackgroundColor(getResources().getColor(R.color.custom_light_green))
+                    button1.setTextColor(getColor(R.color.text_color))
                 } else {
                     button1.setBackgroundColor(Color.RED)
+                    button1.setTextColor(getColor(R.color.text_color))
+
                     lives--
                     if (lives == 0){
-                        val winActivity = Intent(this, WInActivity::class.java)
-                        winActivity.putExtra("rounds", round)
-                        winActivity.putExtra("lives", lives)
-                        startActivity(winActivity)
-//                        val failActivity = Intent(this, FailActivity::class.java)
-//                        startActivity(failActivity)
+                        val failActivity = Intent(this, FailActivity::class.java)
+                        failActivity.putExtra("rounds", round)
+                        failActivity.putExtra("lives", lives)
+                        startActivity(failActivity)
                         finish()
                     }
                 }
+                nextButton.setBackgroundColor(getColor(R.color.custom_yellow))
+                nextButton.setTextColor(getColor(R.color.custom_purple))
             }
         }
         button2.setOnClickListener {
@@ -83,15 +88,21 @@ class GameActivity : AppCompatActivity() {
                 answer = button2.text.toString()
                 if (answer.equals(rightAnswer)){
                     button2.setBackgroundColor(getResources().getColor(R.color.custom_light_green))
+                    button2.setTextColor(getColor(R.color.text_color))
                 } else {
                     button2.setBackgroundColor(Color.RED)
+                    button2.setTextColor(getColor(R.color.text_color))
                     lives--
                     if (lives == 0){
                         val failActivity = Intent(this, FailActivity::class.java)
+                        failActivity.putExtra("rounds", round)
+                        failActivity.putExtra("lives", lives)
                         startActivity(failActivity)
                         finish()
                     }
                 }
+                nextButton.setBackgroundColor(getColor(R.color.custom_yellow))
+                nextButton.setTextColor(getColor(R.color.custom_purple))
             }
         }
         button3.setOnClickListener {
@@ -100,15 +111,21 @@ class GameActivity : AppCompatActivity() {
                 answer = button3.text.toString()
                 if (answer.equals(rightAnswer)){
                     button3.setBackgroundColor(getResources().getColor(R.color.custom_light_green))
+                    button3.setTextColor(getColor(R.color.text_color))
                 } else {
                     button3.setBackgroundColor(Color.RED)
+                    button3.setTextColor(getColor(R.color.text_color))
                     lives--
                     if (lives == 0){
                         val failActivity = Intent(this, FailActivity::class.java)
+                        failActivity.putExtra("rounds", round)
+                        failActivity.putExtra("lives", lives)
                         startActivity(failActivity)
                         finish()
                     }
                 }
+                nextButton.setBackgroundColor(getColor(R.color.custom_yellow))
+                nextButton.setTextColor(getColor(R.color.custom_purple))
             }
         }
         button4.setOnClickListener {
@@ -117,21 +134,28 @@ class GameActivity : AppCompatActivity() {
                 answer = button4.text.toString()
                 if (answer.equals(rightAnswer)){
                     button4.setBackgroundColor(getResources().getColor(R.color.custom_light_green))
+                    button4.setTextColor(getColor(R.color.text_color))
                 } else {
                     button4.setBackgroundColor(Color.RED)
+                    button4.setTextColor(getColor(R.color.text_color))
                     lives--
                     if (lives == 0){
                         val failActivity = Intent(this, FailActivity::class.java)
+                        failActivity.putExtra("rounds", round)
+                        failActivity.putExtra("lives", lives)
                         startActivity(failActivity)
                         finish()
                     }
                 }
+                nextButton.setBackgroundColor(getColor(R.color.custom_yellow))
+                nextButton.setTextColor(getColor(R.color.custom_purple))
             }
         }
     }
     private fun createGame(button1: Button, button2: Button, button3: Button, button4: Button, questionText: TextView) :String{
         val minRange = 2
         val maxRange = 9
+
 
         var num1 = (Math.random() * (maxRange - minRange + 1) + minRange).toInt()
         var num2 = (Math.random() * (maxRange - minRange + 1) + minRange).toInt()

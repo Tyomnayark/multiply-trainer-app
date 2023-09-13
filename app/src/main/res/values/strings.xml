@@ -31,7 +31,7 @@
     <string name="settings_title">Settings</string>
     <string name="version_title">Version</string>
     <string name="app_version_text">multiply-everywhere 1.0</string>
-    <string name="button_about_us_text">About us</string>
+    <string name="button_about_us_text">About me</string>
     <string name="statistics_title_text">Statistics</string>
     <string name="change_profile_text">Change profile</string>
     <string name="question_delete_user">Are you sure you want to delete a current user?</string>
@@ -45,4 +45,7 @@
     <string name="next_question_text">Next question</string>
     <string name="win_text">You win!</string>
     <string name="points_text">points</string>
+    <string name="continue_text">Continue</string>
+    <string name="fail_text">You are failed</string>
+    <string name="try_again_text">Try again!</string>
 </resources>
