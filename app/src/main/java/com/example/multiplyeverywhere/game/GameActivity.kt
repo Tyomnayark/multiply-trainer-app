@@ -33,6 +33,8 @@ class GameActivity : AppCompatActivity() {
         val button3 = findViewById<Button>(R.id.button3)
         val button4 = findViewById<Button>(R.id.button4)
         val questionText = findViewById<TextView>(R.id.question_text)
+        val livesText = findViewById<TextView>(R.id.lives_text)
+        livesText.text = lives.toString()
 
        rightAnswer =  createGame(button1,button2,button3,button4,questionText)
 
@@ -70,6 +72,7 @@ class GameActivity : AppCompatActivity() {
                     button1.setTextColor(getColor(R.color.text_color))
 
                     lives--
+                    livesText.text = lives.toString()
                     if (lives == 0){
                         val failActivity = Intent(this, FailActivity::class.java)
                         failActivity.putExtra("rounds", round)
@@ -93,6 +96,7 @@ class GameActivity : AppCompatActivity() {
                     button2.setBackgroundColor(Color.RED)
                     button2.setTextColor(getColor(R.color.text_color))
                     lives--
+                    livesText.text = lives.toString()
                     if (lives == 0){
                         val failActivity = Intent(this, FailActivity::class.java)
                         failActivity.putExtra("rounds", round)
@@ -116,6 +120,7 @@ class GameActivity : AppCompatActivity() {
                     button3.setBackgroundColor(Color.RED)
                     button3.setTextColor(getColor(R.color.text_color))
                     lives--
+                    livesText.text = lives.toString()
                     if (lives == 0){
                         val failActivity = Intent(this, FailActivity::class.java)
                         failActivity.putExtra("rounds", round)
@@ -139,6 +144,7 @@ class GameActivity : AppCompatActivity() {
                     button4.setBackgroundColor(Color.RED)
                     button4.setTextColor(getColor(R.color.text_color))
                     lives--
+                    livesText.text = lives.toString()
                     if (lives == 0){
                         val failActivity = Intent(this, FailActivity::class.java)
                         failActivity.putExtra("rounds", round)

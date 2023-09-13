@@ -115,6 +115,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+
+        <ImageView
+            android:id="@+id/heart"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar"
+            app:srcCompat="@drawable/heart" />
+
+        <TextView
+            android:id="@+id/lives_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/text_color"
+            app:layout_constraintBottom_toBottomOf="@+id/heart"
+            app:layout_constraintEnd_toEndOf="@+id/heart"
+            app:layout_constraintStart_toStartOf="@+id/heart"
+            app:layout_constraintTop_toTopOf="@+id/heart" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
