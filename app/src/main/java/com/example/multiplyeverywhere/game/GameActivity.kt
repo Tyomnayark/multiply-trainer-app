@@ -48,8 +48,9 @@ class GameActivity : AppCompatActivity() {
                 responseReceived = false
             }
             if (round == 10){
-                creditPoints(lives,round)
                     val winActivity = Intent(this, WInActivity::class.java)
+                winActivity.putExtra("rounds", round)
+                winActivity.putExtra("lives", lives)
                     startActivity(winActivity)
                     finish()
             }
@@ -65,9 +66,12 @@ class GameActivity : AppCompatActivity() {
                     button1.setBackgroundColor(Color.RED)
                     lives--
                     if (lives == 0){
-                        creditPoints(lives,round)
-                        val failActivity = Intent(this, FailActivity::class.java)
-                        startActivity(failActivity)
+                        val winActivity = Intent(this, WInActivity::class.java)
+                        winActivity.putExtra("rounds", round)
+                        winActivity.putExtra("lives", lives)
+                        startActivity(winActivity)
+//                        val failActivity = Intent(this, FailActivity::class.java)
+//                        startActivity(failActivity)
                         finish()
                     }
                 }
@@ -83,7 +87,6 @@ class GameActivity : AppCompatActivity() {
                     button2.setBackgroundColor(Color.RED)
                     lives--
                     if (lives == 0){
-                        creditPoints(lives,round)
                         val failActivity = Intent(this, FailActivity::class.java)
                         startActivity(failActivity)
                         finish()
@@ -101,7 +104,6 @@ class GameActivity : AppCompatActivity() {
                     button3.setBackgroundColor(Color.RED)
                     lives--
                     if (lives == 0){
-                        creditPoints(lives,round)
                         val failActivity = Intent(this, FailActivity::class.java)
                         startActivity(failActivity)
                         finish()
@@ -119,7 +121,6 @@ class GameActivity : AppCompatActivity() {
                     button4.setBackgroundColor(Color.RED)
                     lives--
                     if (lives == 0){
-                        creditPoints(lives,round)
                         val failActivity = Intent(this, FailActivity::class.java)
                         startActivity(failActivity)
                         finish()
@@ -170,12 +171,5 @@ class GameActivity : AppCompatActivity() {
         questionText.setText(num1.toString()+" x "+ num2.toString())
 
         return (num1*num2).toString()
-    }
-    private fun creditPoints(lives: Int, round: Int){
-        val db = DataBaseController(this, null)
-        var userName = SharedPreferencesHelper(this).getUserName()
-        val user = db.getUserByName(userName)
-        val points = (10-round) * 200 + lives * 100 + user!!.level
-        db.updateUserPoints(userName, points )
     }
 }
