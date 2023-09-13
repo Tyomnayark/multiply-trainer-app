@@ -96,4 +96,36 @@ class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
         val progressBarCircle = binding.progressBar
         progressBarCircle.setProgress(persent)
     }
+
+    override fun onResume() {
+        super.onResume()
+        val db = DataBaseController(requireContext(), null)
+        var userName = SharedPreferencesHelper(requireContext()).getUserName()
+        user = db.getUserByName(userName)
+
+        val profileViewModel =
+            ViewModelProvider(this).get(ProfileViewModel::class.java)
+
+        val textViewUserName: TextView = binding.textHome
+        val textViewUserLevel: TextView = binding.levelText
+
+        profileViewModel.setText(userName, countUserLevel(user?.level) , requireContext())
+
+        profileViewModel.userName.observe(viewLifecycleOwner) {
+            textViewUserName.text = it
+        }
+        profileViewModel.userLevel.observe(viewLifecycleOwner) {
+            textViewUserLevel.text = it
+        }
+
+        val resourceId = resources.getIdentifier(user?.profileImage, "drawable", context?.packageName)
+        binding.profileImage.setImageResource(resourceId)
+
+        binding.editProfilePhotoButton.setOnClickListener {
+            val fragmentManager = childFragmentManager
+            val dialog = DialogEditProfilePhoto()
+            dialog.setProfileImageUpdatedListener(this)
+            dialog.show(fragmentManager, "EditProfilePhotoDialog")
+        }
+    }
 }

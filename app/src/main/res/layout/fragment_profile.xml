@@ -148,6 +148,7 @@
         android:orientation="vertical"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_border_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -341,18 +342,6 @@
         </TableLayout>
     </LinearLayout>
 
-            <Button
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/custom_yellow"
-                android:id="@+id/button"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="18sp"
-                android:text="@string/more_achievements_button"
-                android:textColor="@color/custom_purple"
-                app:cornerRadius="20dp" />
 
         </LinearLayout>
     </ScrollView>
