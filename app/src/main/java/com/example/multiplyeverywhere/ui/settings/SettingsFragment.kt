@@ -8,7 +8,9 @@ import android.media.AudioManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewAnimationUtils
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -20,6 +22,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.example.multiplyeverywhere.LoginActivity
+import com.example.multiplyeverywhere.MainActivity
 import com.example.multiplyeverywhere.R
 import com.example.multiplyeverywhere.SharedPreferencesHelper
 import com.example.multiplyeverywhere.User
@@ -33,22 +36,22 @@ class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val preferences = SharedPreferencesHelper(requireContext())
         val db = DataBaseController(requireContext(), null)
         var userName = SharedPreferencesHelper(requireContext()).getUserName()
@@ -125,7 +128,9 @@ class SettingsFragment : Fragment() {
             builder.setNegativeButton(getString(R.string.no_button_text)) { dialog, which ->
                 dialog.dismiss()
             }
+
             val dialog = builder.create()
+            dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_border_rectangle)
             dialog.show()
         }
 
@@ -180,6 +185,7 @@ class SettingsFragment : Fragment() {
                        preferences.setLanguage("ru")
                        selectedLanguage =  getString(R.string.language_item_russian)
                        if (currentLanguage!="ru"){
+
                            requireActivity().recreate()
                        }
                    }

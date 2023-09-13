@@ -11,7 +11,7 @@ import com.example.multiplyeverywhere.User
 class DataBaseController (val context: Context , val factory: SQLiteDatabase.CursorFactory?) :
     SQLiteOpenHelper (context, "usersdb", factory, 1){
     override fun onCreate(db: SQLiteDatabase?) {
-        val query = "CREATE TABLE users (id INT PRIMARY KEY, name STRING, level INT)"
+        val query = "CREATE TABLE users (id INT PRIMARY KEY, name STRING, points INT, image STRING )"
         db!!.execSQL(query)
     }
 
@@ -22,7 +22,8 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
     fun addUser(user: User){
         val values  = ContentValues()
         values.put("name", user.name)
-        values.put("level", user.level)
+        values.put("points", user.level)
+        values.put("image", user.profileImage)
         val db = this.writableDatabase
         db.insert("users", null, values)
     }
@@ -31,14 +32,15 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
         return dbFile.exists()
     }
 
+
     @SuppressLint("Range")
     fun getUserByName(userName: String): User? {
         val db = this.readableDatabase
         val cursor = db.query(
             "users",
-            arrayOf("id", "name", "level"),
+            arrayOf("id", "name", "points", "image"),
             "name = ?",
-            arrayOf(userName.toString()),
+            arrayOf(userName),
             null, null, null, null
         )
 
@@ -47,13 +49,17 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 val name = cursor.getString(cursor.getColumnIndex("name"))
-                val level = cursor.getInt(cursor.getColumnIndex("level"))
-                user = User( name, level)
+                val level = cursor.getInt(cursor.getColumnIndex("points"))
+                val image = cursor.getString(cursor.getColumnIndex("image"))
+                user = User(name, level, image)
             }
             cursor.close()
         }
+
         return user
     }
+
+    @SuppressLint("Range")
     fun getUserNames(): ArrayList<String> {
         val userNames = ArrayList<String>()
         val db = this.readableDatabase
@@ -74,6 +80,7 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
 
         return userNames
     }
+
     fun deleteUserByName(userName: String): Boolean {
         val db = this.writableDatabase
 
@@ -84,4 +91,29 @@ class DataBaseController (val context: Context , val factory: SQLiteDatabase.Cur
 
         return deletedRows > 0
     }
+    fun updateUserPoints(userName: String, newPoints: Int): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put("points", newPoints)
+
+        val whereClause = "name = ?"
+        val whereArgs = arrayOf(userName)
+
+        val updatedRows = db.update("users", values, whereClause, whereArgs)
+
+        return updatedRows > 0
+    }
+    fun updateUserProfileImage(userName: String, newImage: String): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put("image", newImage)
+
+        val whereClause = "name = ?"
+        val whereArgs = arrayOf(userName)
+
+        val updatedRows = db.update("users", values, whereClause, whereArgs)
+
+        return updatedRows > 0
+    }
+
 }

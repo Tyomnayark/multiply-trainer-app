@@ -7,6 +7,7 @@
     android:background="@color/custom_green"
     tools:context=".ui.settings.SettingsFragment">
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -192,6 +193,7 @@
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/rounded_border_rectangle"
                 android:backgroundTint="@color/white">
 
@@ -221,7 +223,7 @@
                     android:layout_marginTop="30dp"
                     app:cornerRadius="20dp"
                     android:backgroundTint="@color/custom_purple"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="50dp"
                     android:text="@string/button_about_us_text"
                     android:textColor="@color/text_color"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -231,4 +233,5 @@
 
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

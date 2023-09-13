@@ -32,7 +32,7 @@
     <string name="settings_title">Настройки</string>
     <string name="version_title">Версия</string>
     <string name="app_version_text">умножай-везде 1.0</string>
-    <string name="button_about_us_text">О нас</string>
+    <string name="button_about_us_text">Обо мне</string>
     <string name="statistics_title_text">Статистика</string>
     <string name="change_profile_text">Сменить пользователя</string>
     <string name="question_delete_user">Вы уверены что хотите удалить текущего пользователя?</string>
@@ -42,4 +42,11 @@
     <string name="language_item_english">Английский</string>
     <string name="language_item_kazakh">Казахский</string>
     <string name="edit_photo_title">Редактировать профиль</string>
+    <string name="start_button_text">Начать тренировку!</string>
+    <string name="next_question_text">Следующий вопрос</string>
+    <string name="win_text">Вы победили!</string>
+    <string name="points_text">очков</string>
+    <string name="continue_text">Продолжить</string>
+    <string name="fail_text">Вы проиграли</string>
+    <string name="try_again_text">Попробуйте снова!</string>
 </resources>

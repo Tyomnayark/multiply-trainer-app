@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageView"
+            android:id="@+id/profile_image"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginTop="20dp"
@@ -51,7 +51,7 @@
             android:text="User name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
         <TextView
             android:id="@+id/level_text"
@@ -77,8 +77,8 @@
             android:clickable="true"
             android:src="@drawable/pensil"
             app:borderWidth="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image"
             app:tint="@color/text_color"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -148,6 +148,7 @@
         android:orientation="vertical"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_border_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -341,18 +342,6 @@
         </TableLayout>
     </LinearLayout>
 
-            <Button
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/custom_yellow"
-                android:id="@+id/button"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="18sp"
-                android:text="@string/more_achievements_button"
-                android:textColor="@color/custom_purple"
-                app:cornerRadius="20dp" />
 
         </LinearLayout>
     </ScrollView>
