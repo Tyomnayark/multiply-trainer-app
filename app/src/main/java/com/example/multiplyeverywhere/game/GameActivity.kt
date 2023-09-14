@@ -40,19 +40,21 @@ class GameActivity : AppCompatActivity() {
 
         nextButton.setOnClickListener {
             if (responseReceived) {
-               rightAnswer = createGame(button1,button2,button3,button4,questionText)
                 round++
                 progressBar.setProgress(round*10)
                 responseReceived = false
                 nextButton.setBackgroundColor(getColor(R.color.custom_light_grey))
-            }
-            if (round == 10){
+                if (round == 10){
                     val winActivity = Intent(this, WInActivity::class.java)
-                winActivity.putExtra("rounds", round)
-                winActivity.putExtra("lives", lives)
+                    winActivity.putExtra("rounds", round)
+                    winActivity.putExtra("lives", lives)
                     startActivity(winActivity)
                     finish()
+                }else {
+                    rightAnswer = createGame(button1, button2, button3, button4, questionText)
+                }
             }
+
             button1.setTextColor(getColor(R.color.white))
             button2.setTextColor(getColor(R.color.white))
             button3.setTextColor(getColor(R.color.white))

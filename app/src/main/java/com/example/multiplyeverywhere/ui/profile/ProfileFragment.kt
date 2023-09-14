@@ -1,19 +1,34 @@
 package com.example.multiplyeverywhere.ui.profile
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.multiplyeverywhere.R
+import com.example.multiplyeverywhere.ScoreRecord
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.utils.ColorTemplate
 import com.example.multiplyeverywhere.SharedPreferencesHelper
 import com.example.multiplyeverywhere.User
 import com.example.multiplyeverywhere.database.DataBaseController
 import com.example.multiplyeverywhere.databinding.FragmentProfileBinding
+import com.github.mikephil.charting.formatter.ValueFormatter
+import com.google.android.gms.common.util.DataUtils
+import java.lang.reflect.Modifier
 
 class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
    private var user: User? = null
@@ -40,7 +55,9 @@ class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
         val textViewUserName: TextView = binding.textHome
         val textViewUserLevel: TextView = binding.levelText
 
-        profileViewModel.setText(userName, countUserLevel(user?.level) , requireContext())
+        val F  = countUserLevel(user?.points)+1.0
+            setProgressCircle(F, F.toInt())
+        profileViewModel.setText(userName, F.toInt().toString() , requireContext())
 
         profileViewModel.userName.observe(viewLifecycleOwner) {
             textViewUserName.text = it
@@ -58,7 +75,94 @@ class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
             dialog.setProfileImageUpdatedListener(this)
             dialog.show(fragmentManager, "EditProfilePhotoDialog")
         }
+
+
+        val weeklyScoreRecords = db.getScoreRecordsForUser(userName)
+        val weeklyData = getWeeklyScoreData(weeklyScoreRecords)
+
+        val barChart = binding.barChart
+
+        barChart.xAxis.setDrawGridLines(false)
+        barChart.axisLeft.setDrawGridLines(false)
+        barChart.axisRight.setDrawGridLines(false)
+
+        barChart.xAxis.textSize = 12f
+        barChart.axisLeft.textSize = 12f
+        barChart.setHighlightPerTapEnabled(false)
+        barChart.setPinchZoom(false)
+        barChart.setDragEnabled(false)
+        barChart.setScaleEnabled(false)
+        barChart.setScaleXEnabled(false)
+        barChart.setScaleYEnabled(false)
+
+        val legend = barChart.legend
+        legend.textSize = 12f
+
+        val xAxis = barChart.xAxis
+        xAxis.valueFormatter = IndexAxisValueFormatter(weeklyData.map { it.first }.toTypedArray())
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.textSize = 12f
+
+        xAxis.setDrawLabels(false)
+
+
+        val leftAxis = barChart.axisLeft
+        leftAxis.textSize = 12f
+        leftAxis.textColor = resources.getColor(R.color.black)
+        leftAxis.valueFormatter = object : ValueFormatter() {
+            override fun getFormattedValue(value: Float): String {
+                    return value.toInt().toString()
+            }
+        }
+        val maxPoints = weeklyData.maxByOrNull { it.second }?.second ?: 0
+        leftAxis.axisMinimum = 0f
+        leftAxis.axisMaximum = maxPoints.toFloat()*1.5f
+
+        val rightAxis = barChart.axisRight
+        rightAxis.isEnabled = false
+
+        val entries = weeklyData.mapIndexed { index, (date, points) ->
+            BarEntry(index.toFloat(), points)
+        }
+
+        val dataSet = BarDataSet(entries, "")
+        dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
+        dataSet.setDrawValues(false)
+
+        val barData = BarData(dataSet)
+        barChart.data = barData
+        barChart.setFitBars(true)
+        barChart.description.isEnabled = false
+
+        val labels = ArrayList<String>()
+        labels.add("")
+        xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+
+        barChart.invalidate()
+
+        val noResultsYetText = binding.noResultsYetText
+        if (weeklyScoreRecords.size==0){
+            noResultsYetText.text = getString(R.string.no_results_yet)
+        }else{
+            noResultsYetText.text=""
+        }
+
         return root
+    }
+    fun getWeeklyScoreData(scoreRecords: List<ScoreRecord>): List<Pair<String, Float>> {
+
+        val weeklyData = mutableMapOf<String, Float>()
+        for (record in scoreRecords) {
+            val date = record.date ?: continue
+            val earnedPoints = record.earnedPoints.toFloat()
+
+            val currentPoints = weeklyData[date] ?: 0f
+            weeklyData[date] = currentPoints + earnedPoints
+        }
+
+        val resultData = weeklyData.toList()
+
+        return resultData
     }
 
     override fun onDestroyView() {
@@ -79,32 +183,26 @@ class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
         anim.duration=1000
         anim.start()
     }
-    private fun countUserLevel(points: Int?) : String {
-        if (points!! < 1000){
-            setProgressCircle(points/(1000/100))
-            return "1"
-        } else if (points < 2500 ){
-            setProgressCircle(points-1000/(1500/100))
-            return "2"
-        }else if (points < 4500){
-            setProgressCircle(points-2500/(2000/100))
-            return "3"
-        }else if (points < 8000){
-            setProgressCircle(points-4500/(3500/100))
-            return "4"
-        } else if (points < 16000){
-            setProgressCircle(points-8000/(8000/100))
-            return "5"
-        }else if (points < 32000){
-            setProgressCircle(points-16000/(16000/100))
-            return "6"
-        }
+    private fun countUserLevel(points: Int?) : Double {
+        val a = 100.0
+        val b = 900.0
+        val c = points!!.toDouble() * -1.0
 
-        return ""
+        val discriminant = b * b - 4 * a * c!!
+
+        if (discriminant < 0) {
+            return 0.0
+        }
+        val sqrtDiscriminant = Math.sqrt(discriminant)
+
+        val f1 = (-b + sqrtDiscriminant) / (2 * a)
+        val f2 = (-b - sqrtDiscriminant) / (2 * a)
+
+        return if (f1 > 0) f1 else if (f2 > 0) f2 else 0.0
     }
-    private fun setProgressCircle(persent : Int){
+    private fun setProgressCircle(F: Double, level: Int ){
         val progressBarCircle = binding.progressBar
-        progressBarCircle.setProgress(persent)
+        progressBarCircle.setProgress(((F-(level.toDouble()))*100).toInt())
     }
 
     override fun onResume() {
@@ -119,7 +217,9 @@ class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
         val textViewUserName: TextView = binding.textHome
         val textViewUserLevel: TextView = binding.levelText
 
-        profileViewModel.setText(userName, countUserLevel(user?.level) , requireContext())
+        val F  = countUserLevel(user?.points)+1.0
+        setProgressCircle(F, F.toInt())
+        profileViewModel.setText(userName, F.toInt().toString() , requireContext())
 
         profileViewModel.userName.observe(viewLifecycleOwner) {
             textViewUserName.text = it

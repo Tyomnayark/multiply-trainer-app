@@ -1,6 +1,7 @@
 package com.example.multiplyeverywhere.ui.profile
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -32,14 +33,13 @@ class DialogEditProfilePhoto : DialogFragment() {
     ): View {
         _binding = DialogEditProfileImageBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
         return root
     }
 
     @SuppressLint("NewApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val dialog = super.onCreateDialog(savedInstanceState)
-        dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_border_rectangle)
-
 
         val image1 = binding.image1
         val image2 = binding.image2
@@ -78,6 +78,7 @@ class DialogEditProfilePhoto : DialogFragment() {
         image6?.setOnClickListener(imageClickListener)
 
     }
+
     private fun handleImageClick(imageName: String) {
         val db = DataBaseController(requireContext(), null)
         val userName = SharedPreferencesHelper(requireContext()).getUserName()

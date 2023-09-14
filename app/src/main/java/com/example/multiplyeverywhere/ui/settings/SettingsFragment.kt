@@ -74,6 +74,7 @@ class SettingsFragment : Fragment() {
                 dialog.dismiss()
             }
             val dialog = builder.create()
+            dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_border_rectangle)
             dialog.show()
         }
         //create change user spinner
@@ -130,6 +131,7 @@ class SettingsFragment : Fragment() {
             }
 
             val dialog = builder.create()
+
             dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_border_rectangle)
             dialog.show()
         }

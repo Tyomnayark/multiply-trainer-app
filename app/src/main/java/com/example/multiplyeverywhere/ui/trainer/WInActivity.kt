@@ -1,5 +1,7 @@
 package com.example.multiplyeverywhere.ui.trainer
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.TypeEvaluator
@@ -8,14 +10,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Animation
+import android.view.animation.LinearInterpolator
 import android.view.animation.ScaleAnimation
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.multiplyeverywhere.R
 import com.example.multiplyeverywhere.SharedPreferencesHelper
+import com.example.multiplyeverywhere.User
 import com.example.multiplyeverywhere.database.DataBaseController
+import java.text.SimpleDateFormat
+import java.util.Date
 
 
 class WInActivity : AppCompatActivity() {
@@ -33,15 +40,18 @@ class WInActivity : AppCompatActivity() {
 
         lives = 2-lives
 
-        var currentPoints = (rounds-lives) * 50
+        var currentPoints = (rounds-lives) * 55
+        db.addScoreRecord(userName,getCurrentDate(), currentPoints )
+//        db.addScoreRecord(userName,"09.22", currentPoints )
+        val points = currentPoints + user!!.points
 
-        val points = currentPoints + user!!.level
+        val startLevel = user!!.level
+        var F = countUserLevel(points)
+            F+=1.0
+        var finalLevel = F.toInt()
 
-        val startProgress = countProgress(user!!.level)
-        val endProgress = countProgress(points)
-
-        val startLevel = countUserLevel(user!!.level)
-        val finalLevel = countUserLevel(points)
+        val startProgress = countProgress(countUserLevel(user.points)+1.0, user.level)
+        val endProgress = countProgress(F, finalLevel)
 
         val levelText = findViewById<TextView>(R.id.level_text)
         levelText.setText(startLevel.toString())
@@ -60,6 +70,7 @@ class WInActivity : AppCompatActivity() {
             pointsText.scaleX = scale
             pointsText.scaleY = scale
         }
+
         val pointsAnimatorSet = AnimatorSet()
         pointsAnimatorSet.playSequentially(scalePointsAnimator)
         pointsAnimatorSet.start()
@@ -108,59 +119,60 @@ class WInActivity : AppCompatActivity() {
             animatorSet.playSequentially(scaleAnimator, textChangeAnimator)
             animatorSet.start()
 
-            var animator = ObjectAnimator.ofInt(progressBar, "progress", startProgress, 100)
-            animator.interpolator = AccelerateDecelerateInterpolator()
-            animator.duration = (100-startProgress)*50L
-            animator.start()
+            val progressAnimator = ObjectAnimator.ofInt(progressBar, "progress", startProgress, 100)
+            progressAnimator.interpolator = LinearInterpolator()
+            progressAnimator.duration = (100-startProgress)*50L
+            progressAnimator.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
 
-            val progressAnimator = ObjectAnimator.ofInt(progressBar, "progress", 0, endProgress)
-            progressAnimator.interpolator = AccelerateDecelerateInterpolator()
-            progressAnimator.duration = endProgress*50L
+                    val animator = ObjectAnimator.ofInt(progressBar, "progress", 0, endProgress)
+                    progressAnimator.interpolator = LinearInterpolator()
+                    animator.duration = endProgress*50L
+                    animator.start()
+                }
+            })
             progressAnimator.start()
+
 
         }else {
             val animator = ObjectAnimator.ofInt(progressBar, "progress", startProgress, endProgress)
-            animator.interpolator = AccelerateDecelerateInterpolator()
+            animator.interpolator = LinearInterpolator()
             animator.duration = (endProgress-startProgress)*50L
             animator.start()
         }
 
         db.updateUserPoints(userName, points )
+        db.updateUserLevel(userName, finalLevel)
+
         val continueButton = findViewById<Button>(R.id.continue_button)
         continueButton.setOnClickListener { 
             finish()
         }
     }
-    private fun countUserLevel(points: Int? ) : Int {
-        if (points!! < 1000){
-            return 1
-        } else if (points < 2500 ){
-            return 2
-        }else if (points < 4500){
-            return 3
-        }else if (points < 8000){
-            return 4
-        } else if (points < 16000){
-            return 5
-        }else if (points < 32000){
-            return 6
+    private fun countUserLevel(points: Int?): Double {
+        val a = 100.0
+        val b = 900.0
+        val c = points!!.toDouble() * -1.0
+
+        val discriminant = b * b - 4 * a * c!!
+
+        if (discriminant < 0) {
+            return 0.0
         }
-        return 0
+        val sqrtDiscriminant = Math.sqrt(discriminant)
+
+        val f1 = (-b + sqrtDiscriminant) / (2 * a)
+        val f2 = (-b - sqrtDiscriminant) / (2 * a)
+
+        return if (f1 > 0) f1 else if (f2 > 0) f2 else 0.0
     }
-    private fun countProgress(points: Int? ) : Int {
-        if (points!! < 1000){
-              return (points/(1000/100))
-        } else if (points < 2500 ){
-            return(points-1000/(1500/100))
-        }else if (points < 4500){
-            return(points-2500/(2000/100))
-        }else if (points < 8000){
-            return(points-4500/(3500/100))
-        } else if (points < 16000){
-            return(points-8000/(8000/100))
-        }else if (points < 32000){
-            return(points-16000/(16000/100))
-        }
-        return 0
+
+    private fun countProgress(F: Double, level: Int ) : Int {
+     return  ((F-(level.toDouble()))*100).toInt()
+    }
+    fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("MM.dd")
+        val currentDate = Date()
+        return dateFormat.format(currentDate)
     }
 }

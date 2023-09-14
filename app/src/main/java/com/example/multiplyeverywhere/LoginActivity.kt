@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.multiplyeverywhere.database.*
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
                if( !isValidName(name,db)){
                    return@setOnClickListener
                }
-                    val user = User(name, 0, "cat" )
+                    val user = User(name, 0, "cat", 1 )
                     db.addUser(user)
 
                     val preferences = SharedPreferencesHelper(this)
@@ -53,5 +55,10 @@ class LoginActivity : AppCompatActivity() {
        }
 
         return true
+    }
+    fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("MM.dd")
+        val currentDate = Date()
+        return dateFormat.format(currentDate)
     }
 }

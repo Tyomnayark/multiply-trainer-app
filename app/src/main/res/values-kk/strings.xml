@@ -49,4 +49,6 @@
     <string name="continue_text">Продолжить</string>
     <string name="fail_text">Вы проиграли</string>
     <string name="try_again_text">Попробуйте снова!</string>
+    <string name="soon_text">Скоро</string>
+    <string name="no_results_yet">Нет результатов</string>
 </resources>
