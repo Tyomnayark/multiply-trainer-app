@@ -47,6 +47,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:text="@string/text_system_settings"
+                    android:fontFamily="@font/roboto_bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -58,6 +59,7 @@
                     android:text="@string/text_set_language"
                     android:gravity="center"
                     android:textSize="17sp"
+
                     android:layout_marginTop="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +69,7 @@
                     android:id="@+id/spinner_language"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/spinners"
                     app:layout_constraintTop_toBottomOf="@id/text_change_language" />
 
@@ -102,6 +105,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:text="@string/text_profile_settings"
+                    android:fontFamily="@font/roboto_bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -181,6 +185,7 @@
                     android:id="@+id/spinner_change_profile"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/spinners"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/change_profile_text" />
@@ -203,6 +208,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/version_title"
                     android:textSize="20dp"
+                    android:fontFamily="@font/roboto_bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

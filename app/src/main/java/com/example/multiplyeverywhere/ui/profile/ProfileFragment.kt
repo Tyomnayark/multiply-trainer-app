@@ -85,6 +85,7 @@ class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
         barChart.xAxis.setDrawGridLines(false)
         barChart.axisLeft.setDrawGridLines(false)
         barChart.axisRight.setDrawGridLines(false)
+        barChart.setBackgroundColor(Color.TRANSPARENT)
 
         barChart.xAxis.textSize = 12f
         barChart.axisLeft.textSize = 12f
@@ -100,11 +101,11 @@ class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
 
         val xAxis = barChart.xAxis
         xAxis.valueFormatter = IndexAxisValueFormatter(weeklyData.map { it.first }.toTypedArray())
+
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.textSize = 12f
-
-        xAxis.setDrawLabels(false)
-
+        xAxis.textSize = 10f
+        xAxis.textColor = Color.BLACK
+        xAxis.setDrawLabels(true)
 
         val leftAxis = barChart.axisLeft
         leftAxis.textSize = 12f
@@ -134,9 +135,7 @@ class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
         barChart.setFitBars(true)
         barChart.description.isEnabled = false
 
-        val labels = ArrayList<String>()
-        labels.add("")
-        xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+
 
         barChart.invalidate()
 

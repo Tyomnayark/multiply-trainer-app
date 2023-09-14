@@ -138,7 +138,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/text_color_dark"
+                        android:textColor="@color/custom_light_grey"
                         android:textSize="30sp"
                         app:layout_constraintBottom_toBottomOf="@+id/barChart"
                         app:layout_constraintEnd_toEndOf="@+id/barChart"

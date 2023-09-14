@@ -23,13 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-//        val recreated = intent.getBooleanExtra("recreated", false)
-//
-//        if (recreated) {
-//            val myView = findViewById<View>(R.id.container)
-//            performCircularRevealAnimation(myView)
-//        }
-
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = NavHostFragment.findNavController(supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)!!)
         val appBarConfiguration = AppBarConfiguration(
@@ -44,14 +37,6 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         navView.itemIconTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.text_color))
     }
-    fun performCircularRevealAnimation(view: View) {
-        val cx = view.width / 2
-        val cy = view.height / 2
-        val finalRadius = Math.hypot(cx.toDouble(), cy.toDouble()).toFloat()
 
-        val anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0f, finalRadius)
-        anim.duration = 1000
-        anim.start()
-    }
 
 }

@@ -40,16 +40,7 @@ class LoadingActivity : AppCompatActivity() {
         val configuration = Configuration()
         configuration.setLocale(locale)
 
-        val isSoundEnable = preferencesHelper.getSoundSetttings()=="true" || preferencesHelper.getSoundSetttings()==""
-        val audioManager = this.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-
-        if (isSoundEnable) {
-            audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false)
-        } else {
-            audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true)
-        }
-
-
+        this@LoadingActivity.resources.updateConfiguration(configuration, this@LoadingActivity.resources.displayMetrics)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)

@@ -92,13 +92,32 @@ class DataBaseController(val context: Context, val factory: SQLiteDatabase.Curso
 
     fun deleteUserByName(userName: String): Boolean {
         val db = this.writableDatabase
-
         val whereClause = "name = ?"
         val whereArgs = arrayOf(userName)
 
-        val deletedRows = db.delete("users", whereClause, whereArgs)
+        deleteScoreRecordsIfExists(userName)
 
-        return deletedRows > 0
+        val deletedUserRows = db.delete("users", whereClause, whereArgs)
+
+        return deletedUserRows > 0
+    }
+
+    fun deleteScoreRecordsIfExists(userName: String) {
+        val db = this.writableDatabase
+
+
+        val checkTableQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name='score_records'"
+        val tableCursor = db.rawQuery(checkTableQuery, null)
+
+        if (tableCursor != null) {
+            if (tableCursor.moveToFirst()) {
+
+                val whereClause = "user_name = ?"
+                val whereArgs = arrayOf(userName)
+                db.delete("score_records", whereClause, whereArgs)
+            }
+            tableCursor.close()
+        }
     }
 
     fun updateUserPoints(userName: String, newPoints: Int): Boolean {

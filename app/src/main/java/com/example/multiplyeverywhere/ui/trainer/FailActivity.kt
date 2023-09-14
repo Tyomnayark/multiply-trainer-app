@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.multiplyeverywhere.R
 import com.example.multiplyeverywhere.SharedPreferencesHelper
+import com.example.multiplyeverywhere.User
 import com.example.multiplyeverywhere.database.DataBaseController
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 
 class FailActivity : AppCompatActivity() {
@@ -25,10 +27,12 @@ class FailActivity : AppCompatActivity() {
         lives = 2-lives
 
         var currentPoints = (rounds-lives) * 50
-
-        if (currentPoints!= 0) {
-            db.addScoreRecord(userName, getCurrentDate(), currentPoints)
+        if (user!!.points==0){
+            addLastSixDays(db,user)
         }
+
+            db.addScoreRecord(userName, getCurrentDate(), currentPoints)
+
 
         val points = currentPoints + user!!.points
         var F = countUserLevel(points)
@@ -64,5 +68,22 @@ class FailActivity : AppCompatActivity() {
         val dateFormat = SimpleDateFormat("MM.dd")
         val currentDate = Date()
         return dateFormat.format(currentDate)
+    }
+    fun addLastSixDays(db: DataBaseController, user: User){
+        val dateFormat = SimpleDateFormat("MM.dd")
+        val currentDate = Date()
+        val calendar = Calendar.getInstance()
+
+        calendar.time = currentDate
+        calendar.add(Calendar.DAY_OF_YEAR, -6)
+        var yesterdayDate = calendar.time
+        var yesterdayDateString = dateFormat.format(yesterdayDate)
+        db.addScoreRecord(user.name, yesterdayDateString, 0)
+        while (dateFormat.format(currentDate)!=yesterdayDateString){
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+            yesterdayDate = calendar.time
+            yesterdayDateString = dateFormat.format(yesterdayDate)
+            db.addScoreRecord(user.name, yesterdayDateString, 0)
+        }
     }
 }

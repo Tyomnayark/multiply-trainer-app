@@ -13,15 +13,18 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.ScaleAnimation
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.multiplyeverywhere.R
 import com.example.multiplyeverywhere.SharedPreferencesHelper
 import com.example.multiplyeverywhere.User
 import com.example.multiplyeverywhere.database.DataBaseController
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 
 
@@ -41,7 +44,11 @@ class WInActivity : AppCompatActivity() {
         lives = 2-lives
 
         var currentPoints = (rounds-lives) * 55
-        db.addScoreRecord(userName,getCurrentDate(), currentPoints )
+
+        if (user!!.points==0){
+            addLastSixDays(db,user)
+        }
+        db.addScoreRecord(userName, getCurrentDate(), currentPoints )
 //        db.addScoreRecord(userName,"09.22", currentPoints )
         val points = currentPoints + user!!.points
 
@@ -148,6 +155,10 @@ class WInActivity : AppCompatActivity() {
         continueButton.setOnClickListener { 
             finish()
         }
+        val imageView = findViewById<ImageView>(R.id.cat_gif_win_activity)
+        val resourceId = R.raw.happy_cat2
+        Glide.with(this).asGif().load(resourceId).into(imageView)
+
     }
     private fun countUserLevel(points: Int?): Double {
         val a = 100.0
@@ -174,5 +185,22 @@ class WInActivity : AppCompatActivity() {
         val dateFormat = SimpleDateFormat("MM.dd")
         val currentDate = Date()
         return dateFormat.format(currentDate)
+    }
+    fun addLastSixDays(db: DataBaseController, user: User){
+        val dateFormat = SimpleDateFormat("MM.dd")
+        val currentDate = Date()
+        val calendar = Calendar.getInstance()
+
+        calendar.time = currentDate
+        calendar.add(Calendar.DAY_OF_YEAR, -6)
+        var yesterdayDate = calendar.time
+        var yesterdayDateString = dateFormat.format(yesterdayDate)
+        db.addScoreRecord(user.name, yesterdayDateString, 0)
+            while (dateFormat.format(currentDate)!=yesterdayDateString){
+                calendar.add(Calendar.DAY_OF_YEAR, 1)
+                yesterdayDate = calendar.time
+                yesterdayDateString = dateFormat.format(yesterdayDate)
+                db.addScoreRecord(user.name, yesterdayDateString, 0)
+            }
     }
 }

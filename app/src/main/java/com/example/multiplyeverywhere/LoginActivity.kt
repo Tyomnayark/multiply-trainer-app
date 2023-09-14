@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.multiplyeverywhere.database.*
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -37,6 +39,10 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(mainActivity)
                     this.finish()
         }
+        val imageView = findViewById<ImageView>(R.id.cat_gif_login_activity)
+        val resourceId = R.raw.lazy_cat
+        Glide.with(this).asGif().load(resourceId).into(imageView)
+
     }
 
     // TODO: fix resources
