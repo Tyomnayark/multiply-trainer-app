@@ -1,8 +1,8 @@
 package com.example.multiplyeverywhere.ui.profile
 
 import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,7 +33,7 @@ class DialogEditProfilePhoto : DialogFragment() {
     ): View {
         _binding = DialogEditProfileImageBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        dialog?.window?.setBackgroundDrawable(resources.getDrawable(R.drawable.rounded_border_rectangle))
         return root
     }
 
