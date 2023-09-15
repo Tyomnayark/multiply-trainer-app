@@ -3,6 +3,7 @@ package com.example.multiplyeverywhere
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.media.AudioManager
 import android.os.Bundle
@@ -21,6 +22,7 @@ class LoadingActivity : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         val preferencesHelper = SharedPreferencesHelper(this)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         when (preferencesHelper.getTheme()) {
             "day"-> {

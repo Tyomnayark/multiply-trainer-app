@@ -6,6 +6,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.TypeEvaluator
 import android.animation.ValueAnimator
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -33,6 +34,7 @@ class WInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_win)
         supportActionBar?.hide()
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val rounds = intent.getIntExtra("rounds", 0)
         var lives = intent.getIntExtra("lives", 0)

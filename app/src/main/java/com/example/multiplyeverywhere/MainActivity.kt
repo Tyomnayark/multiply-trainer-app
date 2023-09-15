@@ -1,6 +1,7 @@
 package com.example.multiplyeverywhere
 
 import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         supportActionBar?.hide()
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = NavHostFragment.findNavController(supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)!!)

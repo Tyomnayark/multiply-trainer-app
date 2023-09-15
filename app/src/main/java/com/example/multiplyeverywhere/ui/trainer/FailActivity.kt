@@ -1,5 +1,6 @@
 package com.example.multiplyeverywhere.ui.trainer
 
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -16,6 +17,7 @@ class FailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fail)
         supportActionBar?.hide()
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val rounds = intent.getIntExtra("rounds", 0)
         var lives = intent.getIntExtra("lives", 0)
