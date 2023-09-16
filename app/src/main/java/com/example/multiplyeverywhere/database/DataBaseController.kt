@@ -13,7 +13,7 @@ class DataBaseController(val context: Context, val factory: SQLiteDatabase.Curso
     SQLiteOpenHelper(context, "usersdb", factory, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val query =
-            "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, points INTEGER, image TEXT, level INTEGER)"
+            "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, points INTEGER, image TEXT, level INTEGER, rightGame INTEGER, game INTEGER, failGame INTEGER)"
         db!!.execSQL(query)
 
         val scoreRecordTableQuery =

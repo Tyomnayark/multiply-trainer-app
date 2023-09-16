@@ -51,4 +51,8 @@
     <string name="try_again_text">Попробуйте снова!</string>
     <string name="soon_text">Скоро</string>
     <string name="no_results_yet">Нет результатов</string>
+    <string name="error_sound">Ошибка воспроизведения звука</string>
+    <string name="enter_your_name">Введите ваше имя</string>
+    <string name="sound_enabled">Звук включен</string>
+    <string name="sound_disabled">Звук выключен</string>
 </resources>

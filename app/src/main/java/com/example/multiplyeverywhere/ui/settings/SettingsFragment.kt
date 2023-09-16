@@ -46,7 +46,6 @@ class SettingsFragment : Fragment() {
 
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         return root
     }
 
@@ -248,13 +247,11 @@ class SettingsFragment : Fragment() {
 
         switchSound.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false)
                 preferences.setSoundSetttings("true")
-                Toast.makeText(requireContext(), "Sound enabled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.sound_enabled), Toast.LENGTH_SHORT).show()
             } else {
-                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true)
                 preferences.setSoundSetttings("false")
-                Toast.makeText(requireContext(), "Sound disabled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.sound_disabled), Toast.LENGTH_SHORT).show()
             }
         }
     }

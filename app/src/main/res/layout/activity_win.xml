@@ -5,84 +5,90 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.trainer.WInActivity">
+    tools:context=".game.WInActivity">
 
-    <TextView
-        android:id="@+id/win_text"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="@string/win_text"
-        android:textColor="@color/text_color_dark"
-        android:textSize="50sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:indeterminateOnly="false"
-        android:progress="80"
-        android:progressDrawable="@drawable/circle_progress"
-        android:rotation="-90"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/win_text"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/win_text"
+            android:textColor="@color/text_color_dark"
+            android:textSize="50sp" />
+
+        <ImageView
+            android:id="@+id/cat_gif_win_activity"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:indeterminateOnly="false"
+                android:progressDrawable="@drawable/circle_progress"
+                android:rotation="-90"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/level_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/text_color_dark"
+                android:textSize="50sp"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toTopOf="@+id/progressBar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/points_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="points"
+            android:layout_gravity="center"
+            android:textColor="@color/text_color_dark"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/continue_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/text_color_dark"
+            android:minWidth="250dp"
+            android:minHeight="40dp"
+            android:layout_gravity="center"
+            android:text="@string/continue_text"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:cornerRadius="20dp"></Button>
+    </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/points_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="points"
-        android:fontFamily="@font/roboto_bold"
-        android:textSize="30sp"
-        android:textColor="@color/text_color_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
-
-    <TextView
-        android:id="@+id/level_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="50sp"
-        android:textColor="@color/text_color_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/continue_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="40dp"
-        android:minWidth="250dp"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/text_color_dark"
-        android:text="@string/continue_text"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:cornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/points_text"></Button>
-
-    <ImageView
-        android:id="@+id/cat_gif_win_activity"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/win_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

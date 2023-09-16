@@ -50,4 +50,8 @@
     <string name="try_again_text">Try again!</string>
     <string name="soon_text">Soon</string>
     <string name="no_results_yet">No results yet</string>
+    <string name="error_sound">Audio playback error</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="sound_enabled">Sound enabled</string>
+    <string name="sound_disabled">Sound disabled</string>
 </resources>
