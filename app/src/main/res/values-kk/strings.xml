@@ -4,7 +4,6 @@
     <string name="title_home">Профиль</string>
     <string name="title_dashboard">Жаттықтырушы</string>
     <string name="title_notifications">Баптаулар</string>
-    <string name="title_activity_login">ЛогинАктивити</string>
     <string name="action_sign_in_short">Тіркелу</string>
     <string name="invalid_username">Қолданушы аты дұрыс емес</string>
     <string name="nameRequest">Сіздің атыңыз кім?</string>
@@ -42,13 +41,13 @@
     <string name="language_item_english">Ағылшынша</string>
     <string name="language_item_kazakh">Қазақша</string>
     <string name="edit_photo_title">Профильді өзгерті</string>
-    <string name="start_button_text">Жаттығуды бастау!</string>
+    <string name="start_button_text">Жаттығуды бастау</string>
     <string name="next_question_text">Келесі сұрақ</string>
     <string name="win_text">Сіз жеңдіңіз!</string>
     <string name="points_text">ұпай</string>
     <string name="continue_text">Жалғастыру</string>
     <string name="fail_text">Сіз жеңілдіңіз</string>
-    <string name="try_again_text">Қайта талпынып көріңіз!</string>
+    <string name="try_again_text">Қайта талпынып көріңіз</string>
     <string name="soon_text">Жақында</string>
     <string name="no_results_yet">Нәтижелер жоқ</string>
     <string name="error_sound">Дыбысты ойнатудан қате</string>
