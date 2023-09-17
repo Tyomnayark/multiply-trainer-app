@@ -13,11 +13,11 @@ class DataBaseController(val context: Context, val factory: SQLiteDatabase.Curso
     SQLiteOpenHelper(context, "usersdb", factory, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val query =
-            "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, points INTEGER, image TEXT, level INTEGER, rightGame INTEGER, game INTEGER, failGame INTEGER)"
+            "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, points INTEGER, image TEXT, level INTEGER)"
         db!!.execSQL(query)
 
         val scoreRecordTableQuery =
-            "CREATE TABLE score_records (id INTEGER PRIMARY KEY AUTOINCREMENT, user_name TEXT, date TEXT, earned_points INTEGER, FOREIGN KEY (user_name) REFERENCES users(name))"
+            "CREATE TABLE score_records (id INTEGER PRIMARY KEY AUTOINCREMENT, user_name TEXT, date TEXT, earned_points INTEGER,  FOREIGN KEY (user_name) REFERENCES users(name))"
         db?.execSQL(scoreRecordTableQuery)
     }
 
@@ -104,7 +104,6 @@ class DataBaseController(val context: Context, val factory: SQLiteDatabase.Curso
 
     fun deleteScoreRecordsIfExists(userName: String) {
         val db = this.writableDatabase
-
 
         val checkTableQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name='score_records'"
         val tableCursor = db.rawQuery(checkTableQuery, null)
