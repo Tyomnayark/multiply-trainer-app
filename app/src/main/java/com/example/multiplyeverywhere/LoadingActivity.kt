@@ -66,4 +66,30 @@ class LoadingActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        val preferencesHelper = SharedPreferencesHelper(this)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        when (preferencesHelper.getTheme()) {
+            "day"-> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            "night" ->{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            else -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
+        val language = preferencesHelper.getLanguage()
+        val locale  = Locale(language)
+        Locale.setDefault(locale)
+        val configuration = Configuration()
+        configuration.setLocale(locale)
+
+        this@LoadingActivity.resources.updateConfiguration(configuration, this@LoadingActivity.resources.displayMetrics)
+    }
 }

@@ -3,16 +3,19 @@ package com.example.multiplyeverywhere
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.view.ViewAnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,5 +43,56 @@ class MainActivity : AppCompatActivity() {
         navView.itemIconTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.text_color))
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        val preferencesHelper = SharedPreferencesHelper(this)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
+        when (preferencesHelper.getTheme()) {
+            "day"-> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            "night" ->{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            else -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
+        val language = preferencesHelper.getLanguage()
+        val locale  = Locale(language)
+        Locale.setDefault(locale)
+        val configuration = Configuration()
+        configuration.setLocale(locale)
+
+        this@MainActivity.resources.updateConfiguration(configuration, this@MainActivity.resources.displayMetrics)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val preferencesHelper = SharedPreferencesHelper(this)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        when (preferencesHelper.getTheme()) {
+            "day"-> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            "night" ->{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            else -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
+        val language = preferencesHelper.getLanguage()
+        val locale  = Locale(language)
+        Locale.setDefault(locale)
+        val configuration = Configuration()
+        configuration.setLocale(locale)
+
+        this@MainActivity.resources.updateConfiguration(configuration, this@MainActivity.resources.displayMetrics)
+    }
 }
