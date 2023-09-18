@@ -21,6 +21,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import com.example.multiplyeverywhere.LoadingActivity
 import com.example.multiplyeverywhere.LoginActivity
 import com.example.multiplyeverywhere.MainActivity
 import com.example.multiplyeverywhere.R
@@ -45,7 +46,6 @@ class SettingsFragment : Fragment() {
 
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         return root
     }
 
@@ -74,6 +74,7 @@ class SettingsFragment : Fragment() {
                 dialog.dismiss()
             }
             val dialog = builder.create()
+            dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_border_rectangle)
             dialog.show()
         }
         //create change user spinner
@@ -130,6 +131,7 @@ class SettingsFragment : Fragment() {
             }
 
             val dialog = builder.create()
+
             dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_border_rectangle)
             dialog.show()
         }
@@ -169,7 +171,9 @@ class SettingsFragment : Fragment() {
                         preferences.setLanguage("en")
                         selectedLanguage =  getString(R.string.language_item_english)
                         if (currentLanguage!="en"){
-                            requireActivity().recreate()
+                            val loadingActivity = Intent(requireContext(), LoadingActivity::class.java)
+                            startActivity(loadingActivity)
+                            requireActivity().finish()
                         }
                     }
                    getString(R.string.language_item_kazakh)->{
@@ -177,7 +181,9 @@ class SettingsFragment : Fragment() {
                        preferences.setLanguage("kk")
                        selectedLanguage =  getString(R.string.language_item_kazakh)
                        if (currentLanguage!="kk"){
-                           requireActivity().recreate()
+                           val loadingActivity = Intent(requireContext(), LoadingActivity::class.java)
+                           startActivity(loadingActivity)
+                           requireActivity().finish()
                        }
                    }
                    getString(R.string.language_item_russian)-> {
@@ -185,8 +191,9 @@ class SettingsFragment : Fragment() {
                        preferences.setLanguage("ru")
                        selectedLanguage =  getString(R.string.language_item_russian)
                        if (currentLanguage!="ru"){
-
-                           requireActivity().recreate()
+                            val loadingActivity = Intent(requireContext(), LoadingActivity::class.java)
+                           startActivity(loadingActivity)
+                           requireActivity().finish()
                        }
                    }
 
@@ -213,13 +220,19 @@ class SettingsFragment : Fragment() {
 
         switchTheme.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 preferences.setTheme("night")
                 themeImage.setImageResource(R.drawable.moon)
+                val loadingActivity = Intent(requireContext(), LoadingActivity::class.java)
+                startActivity(loadingActivity)
+                requireActivity().finish()
             } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 preferences.setTheme("day")
                 themeImage.setImageResource(R.drawable.sun)
+                val loadingActivity = Intent(requireContext(), LoadingActivity::class.java)
+                startActivity(loadingActivity)
+                requireActivity().finish()
             }
         }
 
@@ -234,13 +247,11 @@ class SettingsFragment : Fragment() {
 
         switchSound.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false)
                 preferences.setSoundSetttings("true")
-                Toast.makeText(requireContext(), "Sound enabled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.sound_enabled), Toast.LENGTH_SHORT).show()
             } else {
-                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true)
                 preferences.setSoundSetttings("false")
-                Toast.makeText(requireContext(), "Sound disabled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.sound_disabled), Toast.LENGTH_SHORT).show()
             }
         }
     }

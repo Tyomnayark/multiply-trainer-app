@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.multiplyeverywhere.R
 import com.example.multiplyeverywhere.databinding.FragmentTrainerBinding
 import com.example.multiplyeverywhere.game.GameActivity
@@ -25,11 +26,14 @@ class TrainerFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        val trainerViewModel =
-                ViewModelProvider(this).get(TrainerViewModel::class.java)
+
 
         _binding = FragmentTrainerBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        val imageView = binding.catGifTrainerFragment
+        val resourceId = R.raw.happy_cat
+        Glide.with(this).asGif().load(resourceId).into(imageView)
+
         return root
     }
 

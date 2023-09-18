@@ -3,6 +3,7 @@ package com.example.multiplyeverywhere
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.media.AudioManager
 import android.os.Bundle
@@ -21,6 +22,7 @@ class LoadingActivity : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         val preferencesHelper = SharedPreferencesHelper(this)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         when (preferencesHelper.getTheme()) {
             "day"-> {
@@ -40,16 +42,7 @@ class LoadingActivity : AppCompatActivity() {
         val configuration = Configuration()
         configuration.setLocale(locale)
 
-        val isSoundEnable = preferencesHelper.getSoundSetttings()=="true" || preferencesHelper.getSoundSetttings()==""
-        val audioManager = this.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-
-        if (isSoundEnable) {
-            audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false)
-        } else {
-            audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true)
-        }
-
-
+        this@LoadingActivity.resources.updateConfiguration(configuration, this@LoadingActivity.resources.displayMetrics)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)
@@ -72,5 +65,31 @@ class LoadingActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        val preferencesHelper = SharedPreferencesHelper(this)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        when (preferencesHelper.getTheme()) {
+            "day"-> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            "night" ->{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            else -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
+        val language = preferencesHelper.getLanguage()
+        val locale  = Locale(language)
+        Locale.setDefault(locale)
+        val configuration = Configuration()
+        configuration.setLocale(locale)
+
+        this@LoadingActivity.resources.updateConfiguration(configuration, this@LoadingActivity.resources.displayMetrics)
     }
 }

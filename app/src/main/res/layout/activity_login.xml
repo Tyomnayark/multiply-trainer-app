@@ -7,10 +7,12 @@
     android:background="@color/custom_light_green"
     tools:context="LoginActivity">
 
+
     <LinearLayout
-        android:background="@drawable/rounded_border_rectangle"
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_border_rectangle"
         android:orientation="vertical"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,43 +20,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <TextView
             android:id="@+id/hello_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
+            android:layout_marginTop="35dp"
             android:text="@string/nameRequest"
             android:textColor="@color/text_color_dark"
-            android:textSize="20sp"
-            android:layout_marginBottom="30dp"/>
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:ems="10"
-            android:textColor="@color/text_color_dark"
             android:layout_marginBottom="20dp"
-            android:textColorHint="@color/text_color_dark"
+            android:ems="10"
             android:fontFamily="@font/roboto_light"
-            android:hint="Enter your name"
+            android:hint="@string/enter_your_name"
             android:inputType="text"
+            android:textColor="@color/text_color_dark"
+            android:textColorHint="@color/text_color_dark"
 
             />
 
         <Button
             android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
-            android:minHeight="170dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:backgroundTint="@color/custom_purple"
             android:fontFamily="@font/roboto_bold"
+            android:minHeight="170dp"
             android:text="@string/action_sign_in_short"
-            app:cornerRadius="20dp"
             android:textColor="@color/text_color"
-            android:backgroundTint="@color/custom_purple"/>
+            app:cornerRadius="20dp" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/cat_gif_login_activity"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="145dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

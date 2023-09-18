@@ -57,17 +57,19 @@
             android:id="@+id/level_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="41dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="42dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/roboto_light"
             android:text="0"
             android:textAlignment="center"
-            android:layout_marginTop="15dp"
             android:textColor="@color/text_color_dark"
             android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="@id/constraintLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_home" />
+            app:layout_constraintBottom_toBottomOf="@id/progressBar"
+            app:layout_constraintEnd_toEndOf="@+id/progressBar"
+            app:layout_constraintStart_toStartOf="@+id/progressBar"
+            app:layout_constraintTop_toTopOf="@id/progressBar" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/edit_profile_photo_button"
@@ -87,11 +89,12 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:progressDrawable="@drawable/circle_progress"
-            android:indeterminateOnly="false"
-            android:progress="80"
-            android:rotation="-90"
             android:layout_marginBottom="20dp"
+            android:indeterminateOnly="false"
+            android:progress="100"
+            android:progressDrawable="@drawable/circle_progress"
+            android:rotation="-90"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_home" />
@@ -113,20 +116,37 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_margin="10dp"
+                android:padding="20dp"
                 android:background="@drawable/rounded_border_rectangle"
-                android:layout_height="150dp"
+                android:layout_height="300dp"
                 >
 
-                <TextView
-                    android:id="@+id/statistic_graph"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/rounded_border_rectangle_white"
+                    android:layout_height="match_parent">
 
-                    android:text="Graph"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barChart"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="false" />
+
+                    <TextView
+                        android:id="@+id/no_results_yet_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/custom_light_grey"
+                        android:textSize="30sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/barChart"
+                        app:layout_constraintEnd_toEndOf="@+id/barChart"
+                        app:layout_constraintStart_toStartOf="@+id/barChart"
+                        app:layout_constraintTop_toTopOf="@+id/barChart" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                 android:id="@+id/achievements_text"
@@ -155,191 +175,209 @@
         app:layout_constraintTop_toBottomOf="@+id/achievements_text">
 
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp">
+<!--        <TableLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_margin="10dp">-->
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp">
+<!--            <TableRow-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_margin="10dp">-->
 
+<!--                <ImageView-->
+<!--                    android:id="@+id/regular_achievement_image"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/day_achievent" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_gravity="center">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/day_achievement_progress_number"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textSize="17sp"-->
+
+<!--                        android:text="0/3" />-->
+
+<!--                    <ProgressBar-->
+<!--                        android:id="@+id/day_achievement_progress_bar"-->
+<!--                        style="?android:attr/progressBarStyleHorizontal"-->
+<!--                        android:layout_width="200dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/day_achievement_progress_text"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="@string/day_achievement_progress_text"-->
+<!--                        android:textColor="@color/text_color_dark"-->
+<!--                        android:textSize="15sp" />-->
+
+<!--                    <RatingBar-->
+<!--                        android:id="@+id/ratingBarDay"-->
+<!--                        android:layout_width="180dp"-->
+<!--                        android:progressTint="@color/custom_yellow"-->
+<!--                        android:clickable="false"-->
+<!--                        android:rating="5"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        style="?android:attr/ratingBarStyleIndicator"-->
+<!--                        android:layout_height="wrap_content" />-->
+<!--                </LinearLayout>-->
+
+<!--            </TableRow>-->
+
+<!--            <TableRow-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_margin="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/excellent_achievement_image"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/day_achievent" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginLeft="10dp"-->
+
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/excellent_achievement_progress_number"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0/1"-->
+<!--                        android:textSize="17sp" />-->
+
+<!--                    <ProgressBar-->
+<!--                        android:id="@+id/excellent_achievement_progress_bar"-->
+<!--                        style="?android:attr/progressBarStyleHorizontal"-->
+<!--                        android:layout_width="200dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:progressTint="@color/custom_purple" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/excellent_achievement_progress_text"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="@string/excellent_achievement_progress_text"-->
+<!--                        android:textColor="@color/text_color_dark"-->
+<!--                        android:textSize="15sp" />-->
+
+<!--                    <RatingBar-->
+<!--                        android:id="@+id/ratingBarExcellent"-->
+<!--                        android:layout_width="180dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:backgroundTint="@color/custom_yellow"-->
+<!--                        android:clickable="false"-->
+<!--                        android:rating="5"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        style="?android:attr/ratingBarStyleIndicator"-->
+<!--                        android:progressTint="@color/custom_yellow" />-->
+<!--                </LinearLayout>-->
+
+
+<!--            </TableRow>-->
+
+<!--            <TableRow-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_margin="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/level_achievement_image"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/day_achievent" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginLeft="10dp"-->
+
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/level_achievement_progress_number"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="1/3"-->
+<!--                        android:textSize="17sp" />-->
+
+<!--                    <ProgressBar-->
+<!--                        android:id="@+id/level_achievement_progress_bar"-->
+<!--                        style="?android:attr/progressBarStyleHorizontal"-->
+<!--                        android:layout_width="200dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:progressTint="@color/custom_purple" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/level_achievement_progress_text"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="@string/level_achievement_progress_text"-->
+<!--                        android:textColor="@color/text_color_dark"-->
+<!--                        android:textSize="15sp" />-->
+
+<!--                    <RatingBar-->
+<!--                        android:id="@+id/ratingBarLevel"-->
+<!--                        android:layout_width="180dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:backgroundTint="@color/custom_yellow"-->
+<!--                        android:clickable="false"-->
+<!--                        android:rating="5"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        style="?android:attr/ratingBarStyleIndicator"-->
+<!--                        android:progressTint="@color/custom_yellow" />-->
+<!--                </LinearLayout>-->
+
+
+<!--            </TableRow>-->
+<!--        </TableLayout>-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/soon_text"
+                    android:layout_margin="20dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/text_color_dark"
+                    android:layout_gravity="center"
+                    ></TextView>
                 <ImageView
-                    android:id="@+id/regular_achievement_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/heart"
                     android:layout_gravity="center"
-                    android:src="@drawable/day_achievent" />
+                    android:layout_marginBottom="20dp"
+                    >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_gravity="center">
-
-                    <TextView
-                        android:id="@+id/day_achievement_progress_number"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="17sp"
-
-                        android:text="0/3" />
-
-                    <ProgressBar
-                        android:id="@+id/day_achievement_progress_bar"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center" />
-
-                    <TextView
-                        android:id="@+id/day_achievement_progress_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/day_achievement_progress_text"
-                        android:textColor="@color/text_color_dark"
-                        android:textSize="15sp" />
-
-                    <RatingBar
-                        android:id="@+id/ratingBarDay"
-                        android:layout_width="180dp"
-                        android:progressTint="@color/custom_yellow"
-                        android:clickable="false"
-                        android:rating="4"
-                        android:layout_gravity="center"
-                        style="?android:attr/ratingBarStyleIndicator"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp">
-
-                <ImageView
-                    android:id="@+id/excellent_achievement_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/day_achievent" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/excellent_achievement_progress_number"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="0/1"
-                        android:textSize="17sp" />
-
-                    <ProgressBar
-                        android:id="@+id/excellent_achievement_progress_bar"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:progressTint="@color/custom_purple" />
-
-                    <TextView
-                        android:id="@+id/excellent_achievement_progress_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/excellent_achievement_progress_text"
-                        android:textColor="@color/text_color_dark"
-                        android:textSize="15sp" />
-
-                    <RatingBar
-                        android:id="@+id/ratingBarExcellent"
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/custom_yellow"
-                        android:clickable="false"
-                        android:rating="1"
-                        android:layout_gravity="center"
-                        style="?android:attr/ratingBarStyleIndicator"
-                        android:progressTint="@color/custom_yellow" />
-                </LinearLayout>
-
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp">
-
-                <ImageView
-                    android:id="@+id/level_achievement_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/day_achievent" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/level_achievement_progress_number"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="1/3"
-                        android:textSize="17sp" />
-
-                    <ProgressBar
-                        android:id="@+id/level_achievement_progress_bar"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:progressTint="@color/custom_purple" />
-
-                    <TextView
-                        android:id="@+id/level_achievement_progress_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/level_achievement_progress_text"
-                        android:textColor="@color/text_color_dark"
-                        android:textSize="15sp" />
-
-                    <RatingBar
-                        android:id="@+id/ratingBarLevel"
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/custom_yellow"
-                        android:clickable="false"
-                        android:rating="1"
-                        android:layout_gravity="center"
-                        style="?android:attr/ratingBarStyleIndicator"
-                        android:progressTint="@color/custom_yellow" />
-                </LinearLayout>
-
-
-            </TableRow>
-        </TableLayout>
+                </ImageView>
     </LinearLayout>
 
 

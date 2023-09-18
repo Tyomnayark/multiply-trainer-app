@@ -1,29 +1,57 @@
 package com.example.multiplyeverywhere.game
 
+import android.animation.ValueAnimator
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.graphics.Color
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.multiplyeverywhere.R
-import com.example.multiplyeverywhere.ui.trainer.FailActivity
-import com.example.multiplyeverywhere.ui.trainer.WInActivity
+import com.example.multiplyeverywhere.SharedPreferencesHelper
 
 class GameActivity : AppCompatActivity() {
 
+
+    lateinit var mediaPlayerFalseAnswerSound: MediaPlayer
+  lateinit  var mediaPlayerTrueAnswerSound: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         supportActionBar?.hide()
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        val preferences = SharedPreferencesHelper(this)
+        val isSoundEnabled =  preferences.getSoundSetttings().toBoolean()
+
+        mediaPlayerFalseAnswerSound =MediaPlayer.create(this, R.raw.false_answer)
+        mediaPlayerTrueAnswerSound =MediaPlayer.create(this, R.raw.right_answer)
+        mediaPlayerFalseAnswerSound.setOnCompletionListener{
+            mp ->
+            mp.stop()
+            mp.reset()
+            mp.prepare()
+            mp.seekTo(0)
+        }
+
+        mediaPlayerTrueAnswerSound.setOnCompletionListener {
+            mp ->
+            mp.stop()
+            mp.reset()
+            mp.prepare()
+            mp.seekTo(0)
+
+        }
 
         var round = 1
         var responseReceived = false
         var answer = ""
         var rightAnswer = ""
-        var lives = 2
+        var lives = 3
 
         val nextButton = findViewById<Button>(R.id.next_button)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
@@ -40,19 +68,32 @@ class GameActivity : AppCompatActivity() {
 
         nextButton.setOnClickListener {
             if (responseReceived) {
-               rightAnswer = createGame(button1,button2,button3,button4,questionText)
+
+                if (mediaPlayerTrueAnswerSound.isPlaying){
+                    mediaPlayerTrueAnswerSound.stop()
+                    mediaPlayerTrueAnswerSound.prepare()
+                    mediaPlayerTrueAnswerSound.seekTo(0)
+                }
+                if (mediaPlayerFalseAnswerSound.isPlaying){
+                    mediaPlayerFalseAnswerSound.stop()
+                    mediaPlayerFalseAnswerSound.prepare()
+                    mediaPlayerFalseAnswerSound.seekTo(0)
+                }
                 round++
                 progressBar.setProgress(round*10)
                 responseReceived = false
                 nextButton.setBackgroundColor(getColor(R.color.custom_light_grey))
-            }
-            if (round == 10){
+                if (round == 10){
                     val winActivity = Intent(this, WInActivity::class.java)
-                winActivity.putExtra("rounds", round)
-                winActivity.putExtra("lives", lives)
+                    winActivity.putExtra("rounds", round)
+                    winActivity.putExtra("lives", lives)
                     startActivity(winActivity)
                     finish()
+                }else {
+                    rightAnswer = createGame(button1, button2, button3, button4, questionText)
+                }
             }
+
             button1.setTextColor(getColor(R.color.white))
             button2.setTextColor(getColor(R.color.white))
             button3.setTextColor(getColor(R.color.white))
@@ -62,15 +103,25 @@ class GameActivity : AppCompatActivity() {
 
         button1.setOnClickListener {
             if (!responseReceived){
+
                 responseReceived = true
                 answer = button1.text.toString()
                 if (answer.equals(rightAnswer)){
+
+                    if (isSoundEnabled){
+                    mediaPlayerTrueAnswerSound.start()
+                    }
+
                     button1.setBackgroundColor(getResources().getColor(R.color.custom_light_green))
                     button1.setTextColor(getColor(R.color.text_color))
                 } else {
                     button1.setBackgroundColor(Color.RED)
                     button1.setTextColor(getColor(R.color.text_color))
 
+                    if (isSoundEnabled){
+                            mediaPlayerFalseAnswerSound.start()
+                    }
+                    animHeart()
                     lives--
                     livesText.text = lives.toString()
                     if (lives == 0){
@@ -90,11 +141,22 @@ class GameActivity : AppCompatActivity() {
                 responseReceived = true
                 answer = button2.text.toString()
                 if (answer.equals(rightAnswer)){
+
+                    if (isSoundEnabled){
+                        mediaPlayerTrueAnswerSound.start()
+                    }
+
                     button2.setBackgroundColor(getResources().getColor(R.color.custom_light_green))
                     button2.setTextColor(getColor(R.color.text_color))
                 } else {
+
+                    if (isSoundEnabled){
+                        mediaPlayerFalseAnswerSound.start()
+                    }
+
                     button2.setBackgroundColor(Color.RED)
                     button2.setTextColor(getColor(R.color.text_color))
+                    animHeart()
                     lives--
                     livesText.text = lives.toString()
                     if (lives == 0){
@@ -114,13 +176,25 @@ class GameActivity : AppCompatActivity() {
                 responseReceived = true
                 answer = button3.text.toString()
                 if (answer.equals(rightAnswer)){
+
+                    if (isSoundEnabled){
+                        mediaPlayerTrueAnswerSound.start()
+                    }
+
                     button3.setBackgroundColor(getResources().getColor(R.color.custom_light_green))
                     button3.setTextColor(getColor(R.color.text_color))
                 } else {
+
+                    if (isSoundEnabled){
+                        mediaPlayerFalseAnswerSound.start()
+                    }
+
                     button3.setBackgroundColor(Color.RED)
                     button3.setTextColor(getColor(R.color.text_color))
                     lives--
+                    animHeart()
                     livesText.text = lives.toString()
+
                     if (lives == 0){
                         val failActivity = Intent(this, FailActivity::class.java)
                         failActivity.putExtra("rounds", round)
@@ -138,12 +212,23 @@ class GameActivity : AppCompatActivity() {
                 responseReceived = true
                 answer = button4.text.toString()
                 if (answer.equals(rightAnswer)){
+
+                    if (isSoundEnabled){
+                        mediaPlayerTrueAnswerSound.start()
+                    }
+
                     button4.setBackgroundColor(getResources().getColor(R.color.custom_light_green))
                     button4.setTextColor(getColor(R.color.text_color))
                 } else {
+
+                    if (isSoundEnabled){
+                        mediaPlayerFalseAnswerSound.start()
+                    }
+
                     button4.setBackgroundColor(Color.RED)
                     button4.setTextColor(getColor(R.color.text_color))
                     lives--
+                    animHeart()
                     livesText.text = lives.toString()
                     if (lives == 0){
                         val failActivity = Intent(this, FailActivity::class.java)
@@ -202,4 +287,25 @@ class GameActivity : AppCompatActivity() {
 
         return (num1*num2).toString()
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayerFalseAnswerSound.release()
+        mediaPlayerTrueAnswerSound.release()
+    }
+    fun animHeart(){
+        val heart = findViewById<ImageView>(R.id.heart)
+
+        val scaleAnimator = ValueAnimator.ofFloat(1f, 1.5f)
+        scaleAnimator.duration = 500
+        scaleAnimator.repeatCount = 1
+        scaleAnimator.repeatMode = ValueAnimator.REVERSE
+
+        scaleAnimator.addUpdateListener { animation ->
+            val scale = animation.animatedValue as Float
+            heart.scaleX = scale
+            heart.scaleY = scale
+        }
+        scaleAnimator.start()
+    }
+
 }

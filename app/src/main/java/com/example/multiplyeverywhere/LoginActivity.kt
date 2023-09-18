@@ -1,18 +1,24 @@
 package com.example.multiplyeverywhere
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.multiplyeverywhere.database.*
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         supportActionBar?.hide()
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val textArea = findViewById<EditText>(R.id.user_name)
         val singInButton = findViewById<Button>(R.id.sign_in_button)
@@ -25,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
                if( !isValidName(name,db)){
                    return@setOnClickListener
                }
-                    val user = User(name, 0, "cat" )
+                    val user = User(name, 0, "cat", 1 )
                     db.addUser(user)
 
                     val preferences = SharedPreferencesHelper(this)
@@ -35,6 +41,10 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(mainActivity)
                     this.finish()
         }
+        val imageView = findViewById<ImageView>(R.id.cat_gif_login_activity)
+        val resourceId = R.raw.lazy_cat
+        Glide.with(this).asGif().load(resourceId).into(imageView)
+
     }
 
     // TODO: fix resources
@@ -53,5 +63,10 @@ class LoginActivity : AppCompatActivity() {
        }
 
         return true
+    }
+    fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("MM.dd")
+        val currentDate = Date()
+        return dateFormat.format(currentDate)
     }
 }
