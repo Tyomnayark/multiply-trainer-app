@@ -3,6 +3,7 @@ package com.example.multiplyeverywhere.ui.profile
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewAnimationUtils
@@ -157,6 +158,9 @@ class ProfileFragment : Fragment(), OnProfileImageUpdatedListener {
 
             val currentPoints = weeklyData[date] ?: 0f
             weeklyData[date] = currentPoints + earnedPoints
+            Log.d("fail", record.failGame.toString())
+            Log.d("perfect", record.perfectGame.toString())
+            Log.d("ordinary", record.ordinaryGame.toString())
         }
 
         val resultData = weeklyData.toList()

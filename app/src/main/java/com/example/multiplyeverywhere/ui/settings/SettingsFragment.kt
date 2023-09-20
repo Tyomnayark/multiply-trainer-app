@@ -170,7 +170,7 @@ class SettingsFragment : Fragment() {
                         changeLanguage("en")
                         preferences.setLanguage("en")
                         selectedLanguage =  getString(R.string.language_item_english)
-                        if (currentLanguage!="en"){
+                        if (currentLanguage!="en" ){
                             val loadingActivity = Intent(requireContext(), LoadingActivity::class.java)
                             startActivity(loadingActivity)
                             requireActivity().finish()
@@ -180,7 +180,7 @@ class SettingsFragment : Fragment() {
                        changeLanguage("kk")
                        preferences.setLanguage("kk")
                        selectedLanguage =  getString(R.string.language_item_kazakh)
-                       if (currentLanguage!="kk"){
+                       if (currentLanguage!="kk" ){
                            val loadingActivity = Intent(requireContext(), LoadingActivity::class.java)
                            startActivity(loadingActivity)
                            requireActivity().finish()

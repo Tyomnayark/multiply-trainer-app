@@ -13,11 +13,11 @@ class DataBaseController(val context: Context, val factory: SQLiteDatabase.Curso
     SQLiteOpenHelper(context, "usersdb", factory, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val query =
-            "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, points INTEGER, image TEXT, level INTEGER)"
+            "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, points INTEGER, image TEXT, level INTEGER, complexity INTEGER)"
         db!!.execSQL(query)
 
         val scoreRecordTableQuery =
-            "CREATE TABLE score_records (id INTEGER PRIMARY KEY AUTOINCREMENT, user_name TEXT, date TEXT, earned_points INTEGER,  FOREIGN KEY (user_name) REFERENCES users(name))"
+            "CREATE TABLE score_records (id INTEGER PRIMARY KEY AUTOINCREMENT, user_name TEXT, date TEXT, earned_points INTEGER, fail_game INTEGER, ordinary_game INTEGER, perfect_game INTEGER,  FOREIGN KEY (user_name) REFERENCES users(name))"
         db?.execSQL(scoreRecordTableQuery)
     }
 
@@ -32,6 +32,7 @@ class DataBaseController(val context: Context, val factory: SQLiteDatabase.Curso
         values.put("points", user.points)
         values.put("image", user.profileImage)
         values.put("level", user.level)
+        values.put("complexity", user.complexity)
         val db = this.writableDatabase
         db.insert("users", null, values)
     }
@@ -46,7 +47,7 @@ class DataBaseController(val context: Context, val factory: SQLiteDatabase.Curso
         val db = this.readableDatabase
         val cursor = db.query(
             "users",
-            arrayOf("id", "name", "points", "image", "level"),
+            arrayOf("id", "name", "points", "image", "level", "complexity"),
             "name = ?",
             arrayOf(userName),
             null, null, null, null
@@ -60,7 +61,8 @@ class DataBaseController(val context: Context, val factory: SQLiteDatabase.Curso
                 val points = cursor.getInt(cursor.getColumnIndex("points"))
                 val image = cursor.getString(cursor.getColumnIndex("image"))
                 val level = cursor.getInt(cursor.getColumnIndex("level"))
-                user = User(name, points, image, level)
+                val complexity = cursor.getInt(cursor.getColumnIndex("complexity"))
+                user = User(name, points, image, level, complexity)
             }
             cursor.close()
         }
@@ -157,29 +159,62 @@ class DataBaseController(val context: Context, val factory: SQLiteDatabase.Curso
 
         return updatedRows > 0
     }
+    fun updateUserComplexity(userName: String, newComplexity: Int): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put("complexity", newComplexity)
+
+        val whereClause = "name = ?"
+        val whereArgs = arrayOf(userName)
+
+        val updatedRows = db.update("users", values, whereClause, whereArgs)
+
+        return updatedRows > 0
+    }
 
     @SuppressLint("Range")
-    fun addScoreRecord(userName: String, date: String, earnedPoints: Int) {
+    fun addScoreRecord(
+        userName: String,
+        date: String,
+        earnedPoints: Int,
+        failGame: Int,
+        ordinaryGame: Int,
+        perfectGame: Int
+    ) {
         val db = this.writableDatabase
 
-        val checkQuery = "SELECT id, earned_points FROM score_records WHERE user_name = ? AND date = ?"
+        val checkQuery =
+            "SELECT id, earned_points, fail_game, ordinary_game, perfect_game FROM score_records WHERE user_name = ? AND date = ?"
         val checkCursor = db.rawQuery(checkQuery, arrayOf(userName, date))
         checkCursor?.use {
             if (it.moveToFirst()) {
 
                 val existingId = it.getLong(it.getColumnIndex("id"))
                 val currentEarnedPoints = it.getInt(it.getColumnIndex("earned_points"))
+                val currentFailGame = it.getInt(it.getColumnIndex("fail_game"))
+                val currentOrdinaryGame = it.getInt(it.getColumnIndex("ordinary_game"))
+                val currentPerfectGame = it.getInt(it.getColumnIndex("perfect_game"))
 
                 val updatedEarnedPoints = currentEarnedPoints + earnedPoints
+                val updatedFailGame = currentFailGame + failGame
+                val updatedOrdinaryGame = currentOrdinaryGame + ordinaryGame
+                val updatedPerfectGame = currentPerfectGame + perfectGame
 
-                val updateQuery = "UPDATE score_records SET earned_points = ? WHERE id = ?"
-                db.execSQL(updateQuery, arrayOf(updatedEarnedPoints, existingId))
+                val updateQuery =
+                    "UPDATE score_records SET earned_points = ?, fail_game = ?, ordinary_game = ?, perfect_game = ? WHERE id = ?"
+                db.execSQL(
+                    updateQuery,
+                    arrayOf(updatedEarnedPoints, updatedFailGame, updatedOrdinaryGame, updatedPerfectGame, existingId)
+                )
             } else {
 
                 val values = ContentValues()
                 values.put("user_name", userName)
                 values.put("date", date)
                 values.put("earned_points", earnedPoints)
+                values.put("fail_game", failGame)
+                values.put("ordinary_game", ordinaryGame)
+                values.put("perfect_game", perfectGame)
                 db.insert("score_records", null, values)
             }
         }
@@ -190,7 +225,8 @@ class DataBaseController(val context: Context, val factory: SQLiteDatabase.Curso
             if (it.moveToFirst()) {
                 val count = it.getInt(0)
                 if (count > 7) {
-                    val deleteQuery = "DELETE FROM score_records WHERE id = (SELECT id FROM score_records WHERE user_name = ? ORDER BY date ASC LIMIT 1)"
+                    val deleteQuery =
+                        "DELETE FROM score_records WHERE id = (SELECT id FROM score_records WHERE user_name = ? ORDER BY date ASC LIMIT 1)"
                     db.execSQL(deleteQuery, arrayOf(userName))
 
                 }
@@ -211,9 +247,23 @@ class DataBaseController(val context: Context, val factory: SQLiteDatabase.Curso
                 val id = it.getLong(it.getColumnIndex("id"))
                 val date = it.getString(it.getColumnIndex("date"))
                 val earnedPoints = it.getInt(it.getColumnIndex("earned_points"))
-                scoreRecords.add(ScoreRecord(id, userName, date, earnedPoints))
+                val failGame = it.getInt(it.getColumnIndex("fail_game"))
+                val ordinaryGame = it.getInt(it.getColumnIndex("ordinary_game"))
+                val perfectGame = it.getInt(it.getColumnIndex("perfect_game"))
+                scoreRecords.add(
+                    ScoreRecord(
+                        id,
+                        userName,
+                        date,
+                        earnedPoints,
+                        failGame,
+                        ordinaryGame,
+                        perfectGame
+                    )
+                )
             }
         }
         return scoreRecords
     }
+
 }

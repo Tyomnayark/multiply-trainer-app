@@ -23,6 +23,8 @@ class LoadingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val preferencesHelper = SharedPreferencesHelper(this)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        val db = DataBaseController(this@LoadingActivity, null)
+        val databaseExists = db.doesDatabaseExist(this@LoadingActivity, "usersdb")
 
         when (preferencesHelper.getTheme()) {
             "day"-> {
@@ -35,10 +37,18 @@ class LoadingActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
+        var language : String = ""
+        var locale : Locale? = null
+        if (!databaseExists){
+            locale = Locale.getDefault()
+            language = locale.language
+            preferencesHelper.setLanguage(language)
+        }else{
+            language = preferencesHelper.getLanguage()
+            locale  = Locale(language)
+            Locale.setDefault(locale)
+        }
 
-        val language = preferencesHelper.getLanguage()
-        val locale  = Locale(language)
-        Locale.setDefault(locale)
         val configuration = Configuration()
         configuration.setLocale(locale)
 
@@ -51,12 +61,9 @@ class LoadingActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
             delay(1500)
 
-            val db = DataBaseController(this@LoadingActivity, null)
-            val databaseExists = db.doesDatabaseExist(this@LoadingActivity, "usersdb")
-
-            this@LoadingActivity.resources.updateConfiguration(configuration,this@LoadingActivity.resources.displayMetrics)
 
             val intent = if ((!databaseExists) || preferencesHelper.getUserName()== "" ) {
+
                 Intent(this@LoadingActivity, LoginActivity::class.java)
             } else {
                 Intent(this@LoadingActivity, MainActivity::class.java)
@@ -71,6 +78,8 @@ class LoadingActivity : AppCompatActivity() {
         super.onRestart()
         val preferencesHelper = SharedPreferencesHelper(this)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        val db = DataBaseController(this@LoadingActivity, null)
+        val databaseExists = db.doesDatabaseExist(this@LoadingActivity, "usersdb")
 
         when (preferencesHelper.getTheme()) {
             "day"-> {
@@ -84,9 +93,18 @@ class LoadingActivity : AppCompatActivity() {
             }
         }
 
-        val language = preferencesHelper.getLanguage()
-        val locale  = Locale(language)
-        Locale.setDefault(locale)
+        var language : String = ""
+        var locale : Locale? = null
+        if (!databaseExists){
+            locale = Locale.getDefault()
+            language = locale.language
+            preferencesHelper.setLanguage(language)
+        }else{
+            language = preferencesHelper.getLanguage()
+            locale  = Locale(language)
+            Locale.setDefault(locale)
+        }
+
         val configuration = Configuration()
         configuration.setLocale(locale)
 

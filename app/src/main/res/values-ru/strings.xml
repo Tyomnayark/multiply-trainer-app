@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Умножай везде</string>
+    <string name="app_name">Умножайка</string>
     <string name="title_home">Профиль</string>
     <string name="title_dashboard">Тренер</string>
     <string name="title_notifications">Настройки</string>
@@ -30,7 +30,7 @@
     <string name="no_button_text">Нет</string>
     <string name="settings_title">Настройки</string>
     <string name="version_title">Версия</string>
-    <string name="app_version_text">умножай-везде 1.0</string>
+    <string name="app_version_text">умножайка 1.0</string>
     <string name="button_about_us_text">Обо мне</string>
     <string name="statistics_title_text">Статистика</string>
     <string name="change_profile_text">Сменить пользователя</string>

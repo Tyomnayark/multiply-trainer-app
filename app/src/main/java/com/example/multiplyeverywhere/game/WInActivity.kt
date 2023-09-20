@@ -50,14 +50,20 @@ class WInActivity : AppCompatActivity() {
         var userName = SharedPreferencesHelper(this).getUserName()
         val user = db.getUserByName(userName)
 
-        lives = 2-lives
+        lives = 3-lives
 
         var currentPoints = (rounds-lives) * 55
 
         if (user!!.points==0){
             addLastSixDays(db,user)
         }
-        db.addScoreRecord(userName, getCurrentDate(), currentPoints )
+        if (lives==0) {
+            db.addScoreRecord(userName, getCurrentDate(), currentPoints, 0, 0, 1)
+        }else
+        {
+            db.addScoreRecord(userName, getCurrentDate(), currentPoints, 0, 1, 0)
+        }
+
 
         val points = currentPoints + user!!.points
 
@@ -204,12 +210,12 @@ class WInActivity : AppCompatActivity() {
         calendar.add(Calendar.DAY_OF_YEAR, -6)
         var yesterdayDate = calendar.time
         var yesterdayDateString = dateFormat.format(yesterdayDate)
-        db.addScoreRecord(user.name, yesterdayDateString, 0)
+        db.addScoreRecord(user.name, yesterdayDateString, 0,0,0,0)
             while (dateFormat.format(currentDate)!=yesterdayDateString){
                 calendar.add(Calendar.DAY_OF_YEAR, 1)
                 yesterdayDate = calendar.time
                 yesterdayDateString = dateFormat.format(yesterdayDate)
-                db.addScoreRecord(user.name, yesterdayDateString, 0)
+                db.addScoreRecord(user.name, yesterdayDateString, 0,0,0,0)
             }
     }
 

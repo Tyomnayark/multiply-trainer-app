@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
                if( !isValidName(name,db)){
                    return@setOnClickListener
                }
-                    val user = User(name, 0, "cat", 1 )
+                    val user = User(name, 0, "cat", 1 ,0)
                     db.addUser(user)
 
                     val preferences = SharedPreferencesHelper(this)

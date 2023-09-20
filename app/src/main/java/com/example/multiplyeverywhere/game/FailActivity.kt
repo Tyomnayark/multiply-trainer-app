@@ -46,7 +46,7 @@ class FailActivity : AppCompatActivity() {
             addLastSixDays(db,user)
         }
 
-            db.addScoreRecord(userName, getCurrentDate(), currentPoints)
+        db.addScoreRecord(userName, getCurrentDate(), currentPoints, 1, 0, 0)
 
 
         val points = currentPoints + user!!.points
@@ -93,12 +93,12 @@ class FailActivity : AppCompatActivity() {
         calendar.add(Calendar.DAY_OF_YEAR, -6)
         var yesterdayDate = calendar.time
         var yesterdayDateString = dateFormat.format(yesterdayDate)
-        db.addScoreRecord(user.name, yesterdayDateString, 0)
+        db.addScoreRecord(user.name, yesterdayDateString, 0,0,0,0)
         while (dateFormat.format(currentDate)!=yesterdayDateString){
             calendar.add(Calendar.DAY_OF_YEAR, 1)
             yesterdayDate = calendar.time
             yesterdayDateString = dateFormat.format(yesterdayDate)
-            db.addScoreRecord(user.name, yesterdayDateString, 0)
+            db.addScoreRecord(user.name, yesterdayDateString, 0,0,0,0)
         }
     }
 
