@@ -1,6 +1,9 @@
 # Multiplication Trainer App
 
-![App Screenshot](./images/Apple iPhone 11 Pro Max Screenshot 1.png)
+![Image Description](./images/1.png)
+![Image Description](./images/2.png)
+![Image Description](./images/3.png)
+![Image Description](./images/4.png)
 
 The Multiplication Table Trainer is a mobile application designed to help users practice and improve their multiplication skills. 
 
