@@ -40,7 +40,7 @@ The Multiplication Table Trainer is a mobile application designed to help users 
 
 4. Start practicing your multiplication tables and track your progress!
    
-##Author
+## Author
 Tyomnayark
 
 If you have any questions, suggestions, or bug reports related to the app, please feel free to contact me at tyomnayark@gmail.com.
