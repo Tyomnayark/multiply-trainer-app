@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    namespace = "com.example.multiplyeverywhere"
-    compileSdk = 33
+    namespace = "com.tyom.multiplyeverywhere"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.multiplyeverywhere"
+        applicationId = "com.tyom.multiplyeverywhere"
         minSdk = 26
         targetSdk = 33
-        versionCode = 1
+        versionCode = 2
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

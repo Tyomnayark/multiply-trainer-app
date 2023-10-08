@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.multiplyeverywhere.ui.profile.ProfileFragment"
+        android:name="com.tyom.multiplyeverywhere.ui.profile.ProfileFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.multiplyeverywhere.ui.trainer.TrainerFragment"
+        android:name="com.tyom.multiplyeverywhere.ui.trainer.TrainerFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_trainer" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.multiplyeverywhere.ui.settings.SettingsFragment"
+        android:name="com.tyom.multiplyeverywhere.ui.settings.SettingsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_settings" />
 </navigation>
