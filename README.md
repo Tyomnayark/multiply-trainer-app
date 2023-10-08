@@ -1,9 +1,16 @@
 # Multiplication Trainer App
 
-![Image Description](./images/1.png)
-![Image Description](./images/2.png)
-![Image Description](./images/3.png)
-![Image Description](./images/4.png)
+<table>
+  <tr>
+    <td><img src="./images/1.png" alt="Image 1"></td>
+    <td><img src="./images/2.png" alt="Image 2"></td>
+  </tr>
+  <tr>
+    <td><img src="./images/3.png" alt="Image 3"></td>
+    <td><img src="./images/4.png" alt="Image 4"></td>
+  </tr>
+</table>
+
 
 The Multiplication Table Trainer is a mobile application designed to help users practice and improve their multiplication skills. 
 
