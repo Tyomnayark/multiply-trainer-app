@@ -4,8 +4,6 @@
   <tr>
     <td><img src="./images/1.png" alt="Image 1"></td>
     <td><img src="./images/2.png" alt="Image 2"></td>
-  </tr>
-  <tr>
     <td><img src="./images/3.png" alt="Image 3"></td>
     <td><img src="./images/4.png" alt="Image 4"></td>
   </tr>
